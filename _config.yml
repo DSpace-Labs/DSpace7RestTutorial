@@ -17,6 +17,7 @@ src_path: "https://github.com/DSpace-Labs/DSpace7RestTutorial/tree/master"
 # nav_style: menu or button
 nav_style: button
 nav:
+  - {name: Home, path: "/README"}
   - {name: Intro, path: "/intro"}
   - {name: "Setup", path: "/setup"}
   - {name: "Custom Code", path: "/code"}
