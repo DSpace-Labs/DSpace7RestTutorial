@@ -22,4 +22,7 @@ nav:
   - {name: "Setup", path: "/setup"}
   - {name: "Community Endpoint Code", path: "/codeReview"}
   - {name: "DSpace REST Architecture", path: "/architecture"}
+  - {name: "Review Architecture in ??? Endpoint Code", path: "/codeReview2"}
+  - {name: "Building and Deploying REST", path: "/build"}
   - {name: "Coding a New Endpoint", path: "/codeEndpoint"}
+  - {name: "What's Next? Get Involved", path: "/get-involved"}
