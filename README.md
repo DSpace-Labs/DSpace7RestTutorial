@@ -1,3 +1,6 @@
+
+{% include nav.html %}
+
 # DSpace7RestTutorial
 Tutorial Resources for the OR2018 REST7 PreConference (Under development)
 
@@ -5,3 +8,7 @@ Tutorial Resources for the OR2018 REST7 PreConference (Under development)
 The resources in this tutorial will be accessible through
 - [GitHub Pages](https://dspace-labs.github.io/DSpace7RestTutorial/)
 - [GitPitch Slideshow](https://gitpitch.com/DSpace-Labs/DSpace7RestTutorial)
+
+{% include nav.html %}
+
+
