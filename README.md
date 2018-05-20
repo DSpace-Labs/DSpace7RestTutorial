@@ -24,24 +24,6 @@ Notes to organize above
 === Rest Tutorial
 
 
-- REST Contract
-- Show HAL landing page and features
-- Using Postman for the REST api
-- Most basic command - get communities
-
-- GET (step through components)
-- Using Authentication
-- POST
-- PUT
-- DEL
-- SEARCH
-
-- Step through components of communities requests
-- Trace URL mapping
-- Repository class
-- Data Class - hibernate
-- Data Class - rest
-- Data converter
 
 REST architecture - discussion of stack components and principles
 Discussion of code goals 
