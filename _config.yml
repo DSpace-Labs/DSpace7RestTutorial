@@ -20,4 +20,6 @@ nav:
   - {name: Home, path: "/"}
   - {name: Intro, path: "/intro"}
   - {name: "Setup", path: "/setup"}
-  - {name: "Custom Code", path: "/code"}
+  - {name: "Community Endpoint Code", path: "/codeReview"}
+  - {name: "DSpace REST Architecture", path: "/architecture"}
+  - {name: "Coding a New Endpoint", path: "/codeEndpoint"}
