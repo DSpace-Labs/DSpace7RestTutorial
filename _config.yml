@@ -1,1 +1,22 @@
 theme: jekyll-theme-cayman
+
+title: DSpace 7 REST API Tutorial 
+description: "Learn the new interface for DSpace Client Apps"
+baseurl: "/DSpace7RestTutorial" 
+url: "http://dspace-labs.github.io/DSpace7RestTutorial" 
+theme: jekyll-theme-cayman
+show_downloads: false
+
+# --------------------------------
+# Custom additions for the tutorial navigation bar
+# --------------------------------
+
+# src_path - used to construct nested links to code files
+src_path: "https://github.com/DSpace-Labs/DSpace7RestTutorial/tree/master"
+
+# nav_style: menu or button
+nav_style: button
+nav:
+  - {name: Intro, path: "/intro"}
+  - {name: "Setup", path: "/setup"}
+  - {name: "Custom Code", path: "/code"}
