@@ -1,7 +1,7 @@
 
 {% include nav.html %}
 
-## TBD
+## Coding a New Endpoint
 
 {% include nav.html %}
 
