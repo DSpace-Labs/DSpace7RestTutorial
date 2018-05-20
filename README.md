@@ -17,24 +17,3 @@ The resources in this tutorial will be accessible through
 - Understand how to build/deploy/test the api
 
 {% include nav.html %}
-
----
-Notes to organize above
-
-=== Rest Tutorial
-
-
-
-REST architecture - discussion of stack components and principles
-Discussion of code goals 
-json structure standards
-Disucssion of test goals
-Disucssion of documentation goals
-
-Step through another object such as item or bitstream?
-
-Code / develop new endpoints (integrate into code base during meeting)
-Or construct a mock object
-Question - if we intend to re-use this training, perhaps we should create a mock object
-
-
