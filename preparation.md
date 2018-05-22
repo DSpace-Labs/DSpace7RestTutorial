@@ -1,4 +1,6 @@
-# DSpace 7 REST Tutorial
+# DSpace 7 REST Tutorial Objectives and Installation Pre-requisites
+
+{% include nav.html %}
 
 Thank you for registering to attend the DSpace 7 REST API Tutorial.  The REST API will become the core interface for the future DSpace User Interface and any future applications that will be built on top of DSpace.
 
@@ -13,6 +15,7 @@ The workshop has been designed to offer something for attendees with various lev
 - Learn how to discover and understand the endpoints that are available in the API (everyone)
 - Learn how to authenticate as a user of the DSpace REST API (everyone)
 - Learn how to construct a simple application on top of the DSpace REST API (intermediate)
+- Learn the architecture and design principles of the REST API (everyone)
 - Learn how to code a new endpoint within the REST API (experienced DSpace developers)
 
 ## Installation Suggestions
@@ -46,4 +49,6 @@ Other workshop participants will be invited to shadow experienced developers for
 - Java IDE such as Eclipse
 - Postgres
 - Tomcat
+
+{% include nav.html %}
 
