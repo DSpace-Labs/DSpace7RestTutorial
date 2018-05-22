@@ -15,7 +15,7 @@ The workshop has been designed to offer something for attendees with various lev
 - Learn how to construct a simple application on top of the DSpace REST API (intermediate)
 - Learn how to code a new endpoint within the REST API (experienced DSpace developers)
 
-## Installation Suggestions for Everyone
+## Installation Suggestions
 
 Based on your level of interest and experience with DSpace, you can choose one of the following installation/setup paths in preparation for the workshop.  Please install this software before the workshop.  Unfortunately, there will not be time to assist attendees with installation issues during the workshop.
 
