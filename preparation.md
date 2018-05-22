@@ -37,6 +37,8 @@ These recommendations will allow you to intract with a public instance of the DS
 ### Installation instructions for experienced DSpace developers
 In the last segment of the workshop, we will modify and deploy changes to the DSpace REST API using the lessons learned in the workshop.  In order to perform this step, you will need a local instance of DSpace on your desktop.  Unfortunately, these installation requirements are not trivial. This step is recommended for experienced DSpace developers.  __We will be unable to troubleshoot desktop installation issues during the workshop__.
 
+Note: based on the reliability of the venue internet, these steps could also be accomplished by remoting into your development/test environment.
+
 Other workshop participants will be invited to shadow experienced developers for this portion of the workshop.
 
 - All of the suggested software listed above
