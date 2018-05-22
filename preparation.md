@@ -26,7 +26,8 @@ These recommendations will allow you to intract with a public instance of the DS
 
 - A laptop with a browser (Chrome, Firefox, or Safari)
 
-### Intermediate Installation Suggestions
+### Intermediate Installation Suggestions for Developing a Simple App on top of REST
+-These recommendations will allow you to create a simple web pagethat can interact with the REST api.
 - Installation suggestions described above
 - A text editor such as Notepad++, Atom
 - [Postman](https://www.getpostman.com/apps) - this is a tool that makes it easy to construct and re-use REST API calls.
@@ -37,6 +38,7 @@ These recommendations will allow you to intract with a public instance of the DS
 In the last segment of the workshop, we will modify and deploy changes to the DSpace REST API using the lessons learned in the workshop.  In order to perform this step, you will need a local instance of DSpace on your desktop.  Unfortunately, these installation requirements are not trivial. This step is recommended for experienced DSpace developers.  __We will be unable to troubleshoot desktop installation issues during the workshop__.
 
 Other workshop participants will be invited to shadow experienced developers for this portion of the workshop.
+
 - All of the suggested software listed above
 - Java JDK, Maven, Ant
 - Java IDE such as Eclipse
