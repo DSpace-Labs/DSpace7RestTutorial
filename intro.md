@@ -5,11 +5,14 @@
 
 ### What is a REST API?
 
-- tbd
+- [What is REST](https://restfulapi.net/) - I just found this link, we should review and decide if it is a good overview
 
 ### History of the REST API and DSpace
 - REST API in prior versions of DSpace
-- Tour of the old REST API (DSpace 6)
+  - DSpace 4, read only
+  - DSpace 5, password authentication only, some write operations
+  - DSpace 6, password and shibboleth, some write operations
+- [Tour of the old REST API](https://demo.dspace.org/rest/) on demo.dspace.org (DSpace 6)
 - Limitations of the old REST API
 
 ### Goals of the new REST API in DSpace 7
