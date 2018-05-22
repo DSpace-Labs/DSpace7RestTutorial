@@ -19,6 +19,7 @@ nav_style: button
 nav:
   - {name: Home, path: "/"}
   - {name: Intro, path: "/intro"}
+  - {name: Objectives and Installation Pre-requisites, path: "/preparation"}  
   - {name: "Setup", path: "/setup"}
   - {name: "Community Endpoint Code", path: "/codeReview"}
   - {name: "DSpace REST Architecture", path: "/architecture"}
