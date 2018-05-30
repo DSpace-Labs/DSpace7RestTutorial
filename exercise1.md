@@ -62,24 +62,29 @@ Use the HAL Browser to list all of the items in the repository.
 
 #### 3b. View a specific item
 Use the HAL Browser to view a specific item.
+
 `api/core/items/[uuid]`
 
 #### 3c. View the owning collection for an item
 Use the HAL Browser to view the owning collection for a specific item.
+
 `api/core/items/[uuid]/owningCollection`
 
 #### 3d. View the bitstreams for an item
 Use the HAL Browser to view the bitstreams for a specific item.
+
 `api/core/items/[uuid]/bitstreams`
 
 ### 4. EPersons and Groups
 
 #### 4a. View all EPersons
 Use the HAL Browser to view all people known to the repository.
+
 `api/eperson/epersons`
 
 #### 4b. View a specific EPerson
 Use the HAL Browser to view the data for a specific user.
+
 `api/eperson/epersons/[uuid]`
 
 #### 4c. View all Groups
@@ -89,6 +94,7 @@ Use the HAL Browser to view all user groups known to the repository.
 
 #### 4d. View a specific Group
 Use the HAL Browser to view the data for a specific user group.
+
 `api/eperson/groups/[uuid]`
 
 {% include nav.html %}
