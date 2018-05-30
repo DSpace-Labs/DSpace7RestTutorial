@@ -21,15 +21,13 @@ We look forward to sharing with the progress that has been made so far with the 
 - Learn how to code a new endpoint within the REST API
 
 ## Installation Pre-requisites
-
-If you are traveling without a laptop or if you do not have the pre-requisite software, please join us and plan to shadow another workshop participant.
-
-### Installation recommendation
-These recommendations will allow you to interact with a public instance of the DSpace REST API and to explore the available endpoints.
+This will allow you to interact with a public instance of the DSpace REST API and to explore the available endpoints.
 - A laptop with a browser (Chrome, Firefox, or Safari)
 
+Note: If you are traveling without a laptop or if you do not have the pre-requisite software, please join us and plan to shadow another workshop participant.
+
 ### Optional Installation
--These recommendations will allow you to simulate an application that can interact with the REST api.
+These recommendations will allow you to simulate an application that can interact with the REST api.
 - A text editor such as Notepad++, Atom
 - [Postman](https://www.getpostman.com/apps) - this is a tool that makes it easy to construct and re-use REST API calls.
 

@@ -1,4 +1,4 @@
-# Exercise 1: Exploring HAL
+# Exercise 4
 {% include nav.html %}
 
 ## Service URL
