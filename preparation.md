@@ -1,7 +1,5 @@
 # DSpace 7 REST Tutorial
 
-{% include nav.html %}
-
 ## Welome
 
 Thank you for registering to attend the DSpace 7 REST API Tutorial.  The REST API will become the core interface for the future DSpace User Interface and any future applications that will be built on top of DSpace.
@@ -28,3 +26,5 @@ Note: If you are traveling without a laptop or if you do not have the pre-requis
 These recommendations will allow you to simulate an application that can interact with the REST api.
 - A text editor such as Notepad++, Atom
 - [Postman](https://www.getpostman.com/apps) - this is a tool that makes it easy to construct and re-use REST API calls.
+
+{% include nav.html %}

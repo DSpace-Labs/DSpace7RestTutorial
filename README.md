@@ -1,14 +1,5 @@
-
-{% include nav.html %}
-
 # DSpace7RestTutorial
 Tutorial Resources for the OR2018 REST7 PreConference (Under development)
-
-## Excercise URL
-[{{site.exerciseUrl}}]({{site.exerciseUrl}})
-
-## Tutorial Slides
-(TBD)
 
 ## Tutorial Objectives
 - Learn the functionality that will be provided by the DSpace 7 REST API
@@ -18,8 +9,10 @@ Tutorial Resources for the OR2018 REST7 PreConference (Under development)
 - Learn the architecture and design principles of the REST API
 - Learn how to code a new endpoint within the REST API
 
-## Service URL
-`{{site.restService}}`
+{% include nav.html %}
+
+## Tutorial Slides
+(TBD)
 
 ## After the Tutorial - Get Involved!
 (Add resource links here)
