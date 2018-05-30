@@ -24,31 +24,11 @@ Based on your level of interest and experience with DSpace, you can choose one o
 
 If you are traveling without a laptop or if you do not have the pre-requisite software, please join us and plan to shadow another workshop participant.
 
-### Installation Suggestions for Everyone
-These recommendations will allow you to intract with a public instance of the DSpace REST API and to explore the avilable endpoints.
-
+### Installation recommendation
+These recommendations will allow you to interact with a public instance of the DSpace REST API and to explore the available endpoints.
 - A laptop with a browser (Chrome, Firefox, or Safari)
 
-### Intermediate Installation Suggestions for Developing a Simple App on top of REST
--These recommendations will allow you to create a simple web pagethat can interact with the REST api.
-- Installation suggestions described above
+### Optional Installation
+-These recommendations will allow you to simulate an application that can interact with the REST api.
 - A text editor such as Notepad++, Atom
 - [Postman](https://www.getpostman.com/apps) - this is a tool that makes it easy to construct and re-use REST API calls.
-- A local web server.  If you do not have one, the following is available as a chrome extension.
-  - [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb/related?hl=en)
-  
-### Installation instructions for experienced DSpace developers
-In the last segment of the workshop, we will modify and deploy changes to the DSpace REST API using the lessons learned in the workshop.  In order to perform this step, you will need a local instance of DSpace on your desktop.  Unfortunately, these installation requirements are not trivial. This step is recommended for experienced DSpace developers.  __We will be unable to troubleshoot desktop installation issues during the workshop__.
-
-Note: based on the reliability of the venue internet, these steps could also be accomplished by remoting into your development/test environment.
-
-Other workshop participants will be invited to shadow experienced developers for this portion of the workshop.
-
-- All of the suggested software listed above
-- Java JDK, Maven, Ant
-- Java IDE such as Eclipse
-- Postgres
-- Tomcat
-
-{% include nav.html %}
-
