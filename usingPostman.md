@@ -22,7 +22,7 @@ pm.sendRequest("https://[your-server]/spring-rest/api/authn/login?user=user@test
 ### Set the following Authorization Value
 
 - Type: `Bearer Token`
-- Token: `{{rest7bearer}}`
+- Token: ```{{rest7bearer}}```
 
 ## In your requests
 
