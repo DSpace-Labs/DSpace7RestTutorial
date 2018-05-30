@@ -4,11 +4,9 @@
 
 ## Welome
 
-The workshop has been designed to offer something for attendees with various levels of experience with the DSpace code base.  
-
-## Tutorial Objectives and Installation Pre-requisites
-
 Thank you for registering to attend the DSpace 7 REST API Tutorial.  The REST API will become the core interface for the future DSpace User Interface and any future applications that will be built on top of DSpace.
+
+The workshop has been designed to offer something for attendees with various levels of experience with the DSpace code base.  
 
 We look forward to sharing with the progress that has been made so far with the API and sharing with you the work yet to be done.  We hope you leave the workshop with greater knowledge and comfort with the REST API.  We also hope to inspire you to contribute your code, documentation, and testing skills to the development of the API.
 
