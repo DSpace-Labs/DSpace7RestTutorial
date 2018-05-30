@@ -1,4 +1,4 @@
-# Exercise 1: Exploring HAL
+# Exercise 1: Exploring Endpoints with HAL Browser
 
 ### 1. Open the HAL Browser landing page
 
