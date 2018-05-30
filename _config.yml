@@ -15,7 +15,7 @@ show_downloads: false
 restService: https://dspace7.4science.it/dspace-spring-rest
 
 # nav_style: menu or button
-nav_style: menu
+nav_style: button
 nav:
   - {name: Home, path: "/"}
   - {name: Installation Pre-requisites, path: "/preparation"}

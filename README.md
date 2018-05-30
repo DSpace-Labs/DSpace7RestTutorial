@@ -13,8 +13,7 @@ Tutorial Resources for the OR2018 REST7 PreConference (Under development)
 - Learn how to code a new endpoint within the REST API
 
 ## Service URL
-(This link will be replaced)
-`https://dspace7.4science.it/dspace-spring-rest`
+`{{site.restService}}`
 
 ## After the Tutorial - Get Involved!
 (Add resource links here)
