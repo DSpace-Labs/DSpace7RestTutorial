@@ -1,6 +1,6 @@
 # DSpace 7 REST Tutorial
 
-## Welome
+## Welcome
 
 Thank you for registering to attend the DSpace 7 REST API Tutorial.  The REST API will become the core interface for the future DSpace User Interface and any future applications that will be built on top of DSpace.
 
