@@ -9,10 +9,10 @@ Tutorial Resources for the OR2018 REST7 PreConference (Under development)
 - Learn the architecture and design principles of the REST API
 - Learn how to code a new endpoint within the REST API
 
-{% include nav.html %}
-
 ## Tutorial Slides
 (TBD)
 
 ## After the Tutorial - Get Involved!
 (Add resource links here)
+
+{% include nav.html %}
