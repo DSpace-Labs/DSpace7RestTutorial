@@ -11,8 +11,8 @@ show_downloads: false
 # Custom additions for the tutorial navigation bar
 # --------------------------------
 
-# src_path - used to construct nested links to code files
 restService: https://dspace7.4science.it/dspace-spring-rest
+exerciseUrl: http://bit.ly/dspace7-rest
 
 # nav_style: menu or button
 nav_style: button
