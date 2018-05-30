@@ -1,9 +1,9 @@
 theme: jekyll-theme-cayman
 
-title: DSpace 7 REST API Tutorial 
+title: DSpace 7 REST API Tutorial
 description: "Learn the new interface for DSpace Client Apps"
-baseurl: "/DSpace7RestTutorial" 
-url: "http://dspace-labs.github.io/DSpace7RestTutorial" 
+baseurl: "/DSpace7RestTutorial"
+url: "http://dspace-labs.github.io/DSpace7RestTutorial"
 theme: jekyll-theme-cayman
 show_downloads: false
 
@@ -12,18 +12,14 @@ show_downloads: false
 # --------------------------------
 
 # src_path - used to construct nested links to code files
-src_path: "https://github.com/DSpace-Labs/DSpace7RestTutorial/tree/master"
+restService: https://dspace7.4science.it/dspace-spring-rest
 
 # nav_style: menu or button
-nav_style: button
+nav_style: menu
 nav:
   - {name: Home, path: "/"}
-  - {name: Intro, path: "/intro"}
-  - {name: Objectives and Installation Pre-requisites, path: "/preparation"}  
-  - {name: "Setup", path: "/setup"}
-  - {name: "Community Endpoint Code", path: "/codeReview"}
-  - {name: "DSpace REST Architecture", path: "/architecture"}
-  - {name: "Review Architecture in ??? Endpoint Code", path: "/codeReview2"}
-  - {name: "Building and Deploying REST", path: "/build"}
-  - {name: "Coding a New Endpoint", path: "/codeEndpoint"}
-  - {name: "What's Next? Get Involved", path: "/get-involved"}
+  - {name: Installation Pre-requisites, path: "/preparation"}
+  - {name: "Exercise 1 - HAL Browser", path: "/exercise1"}
+  - {name: "Exercise 2", path: "/exercise2"}
+  - {name: "Exercise 3", path: "/exercise3"}
+  - {name: "Exercise 4", path: "/exercise4"}
