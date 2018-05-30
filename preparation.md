@@ -30,5 +30,3 @@ Note: If you are traveling without a laptop or if you do not have the pre-requis
 These recommendations will allow you to simulate an application that can interact with the REST api.
 - A text editor such as Notepad++, Atom
 - [Postman](https://www.getpostman.com/apps) - this is a tool that makes it easy to construct and re-use REST API calls.
-
-{% include nav.html %}

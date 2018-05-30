@@ -23,5 +23,3 @@ Tutorial Resources for the OR2018 REST7 PreConference (Under development)
 
 ## After the Tutorial - Get Involved!
 (Add resource links here)
-
-{% include nav.html %}
