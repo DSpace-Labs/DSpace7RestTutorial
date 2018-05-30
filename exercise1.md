@@ -40,7 +40,42 @@ Explore the community
 - What is its title?
 
 ### 3. Items
+
+#### List all items
 - Note that the results are paginated.
 - Navigate through the list using the first, last, and next links.
+- How many items are in the repository?
+
+`api/core/items`
+
+#### View a specific items
+
+`api/core/items/[uuid]`
+
+#### View the owning collection for an item
+
+`api/core/items/[uuid]/owningCollection`
+
+#### View the bitstreams for an item
+
+`api/core/items/[uuid]/bitstreams`
+
+### 4. EPersons and Groups
+
+#### View all EPersons
+
+`api/eperson/epersons`
+
+#### View a specific EPerson
+
+`api/eperson/epersons/[uuid]`
+
+#### View all Groups
+
+`api/eperson/groups`
+
+#### View a specific Group
+
+`api/eperson/groups/[uuid]`
 
 {% include nav.html %}
