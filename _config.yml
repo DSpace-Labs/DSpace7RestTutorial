@@ -23,3 +23,4 @@ nav:
   - {name: "Exercise 2", path: "/exercise2"}
   - {name: "Exercise 3", path: "/exercise3"}
   - {name: "Exercise 4", path: "/exercise4"}
+  - {name: "Tips for Using Postman", path: "/usingPostman"}
