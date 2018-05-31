@@ -40,7 +40,7 @@ For the rest of this exercise, continue to provide the authorization header.
 
 ## 2. View non-public content
 
-(Time and contents permitting, we may view items restricted from public view.)
+- TODO: Based on the server we will be using, add notes to query for restricted content
 
 ## 3. Next steps
 
