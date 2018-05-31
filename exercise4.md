@@ -1,4 +1,5 @@
-# Exercise 4
-{% include nav.html %}
+# Exercise 4: Authenticating with Postman
 
 ### TBD
+
+{% include nav.html %}
