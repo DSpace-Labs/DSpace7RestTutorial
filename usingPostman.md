@@ -5,7 +5,7 @@ This is beyond the scope of the workshop.  The following notes may be helpful in
 - Click "Edit" on the Collection
 
 ### Set the following Pre-request Script
-
+Customize the server address, username, and password for your site.
 ```
 const loginRequest = {
   url: 'http://localhost:8080/spring-rest/api/authn/login',
