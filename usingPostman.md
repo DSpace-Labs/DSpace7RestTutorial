@@ -5,10 +5,15 @@ This is beyond the scope of the workshop.  The following notes may be helpful in
 - Click "Edit" on the Collection
 
 ### Set the following Pre-request Script
-
+Customize the server address, username, and password for your site.
 ```
-var pass = "admin";
-pm.sendRequest("https://[your-server]/spring-rest/api/authn/login?user=user@test.edu&password="+pass, function (err, response) {
+const loginRequest = {
+  url: 'http://localhost:8080/spring-rest/api/authn/login',
+  method: 'POST',
+  header: 'Content-Type: application/x-www-form-urlencoded',
+  body: "user=test@test.edu&password=admin"
+};
+pm.sendRequest(loginRequest, function (err, response) {
     var s = response.headers.get("Authorization");
     if (s == null) {
         s = "";
