@@ -38,7 +38,15 @@ Note: this authentication token will eventually expire.  Repeat step 1b if you n
 
 For the rest of this exercise, continue to provide the authorization header.
 
-## 2. Submit a work item
+## 2. View non-public content
+
+(Time and contents permitting, we may view items restricted from public view.)
+
+## 3. Next steps
+
+The HAL browser does not yet pass authentication status to requests that modify data, so this exercise will stop here.
+
+Future modifications will enable more functionality through the browser.
 
 
 {% include nav.html %}

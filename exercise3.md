@@ -1,4 +1,5 @@
-# Exercise 3
-{% include nav.html %}
+# Exercise 3: Browsing the Repository with Postman
 
 ### TBD
+
+{% include nav.html %}
