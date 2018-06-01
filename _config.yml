@@ -11,7 +11,8 @@ show_downloads: false
 # Custom additions for the tutorial navigation bar
 # --------------------------------
 
-restService: https://dspace7.4science.it/dspace-spring-rest
+restService: https://dspace7.4science.it/terry
+restCredentials: dspacedemoadmin@mailinator.com / dspace
 exerciseUrl: http://bit.ly/dspace7-rest
 
 # nav_style: menu or button

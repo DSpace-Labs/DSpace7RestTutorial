@@ -42,12 +42,19 @@ As long as you continue to use the tab that contains this Bearer token, you will
 
 ## 2. Viewing Data as an authenticated user
 
-Repeat the query for ??? items.  Note the result count.  
+Rerun the queries that you ran in Exercise 2.  Note the result count.  
+
+### 2a. Search for all objects and note the result count
+
+`api/discover/search/objects`
+
+### 2b. Search for "research" and note the result count
+
+`api/discover/search/objects?query=research`
 
 How does this compare to your unauthenticated results?
 
 You can verify this by running the same query in a different tab (without the Bearer token) and note the difference in counts.
-
 
 ### 3. Workspaceitems
 
