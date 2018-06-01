@@ -25,21 +25,19 @@ In the response body, note the status
 
 ### 2b. From the authn endpoint, POST to the login method
 In order to perform a POST operation, you must use the NON-GET button "!".
+(This is not currerntly working)
+
+For convenience, the HAL browser also provides a login box at the top of the page.  
+Click "Login" and supply the credentials at the bottom of this page.
+
+Behind the scenes, the login box will perform the following operation.
 
 `api/auth/login`
 
-Supply the following login information in the popup box.
+This action will return a response header named "Authorization" which contains an authorization token.  
+The HAL browser will pass this token in subsequent requests.
 
-    {
-      email: 'test@test.edu',
-      password: 'admin'
-    }
-
-View the return status.  If it is successful, you should see a response header named "Authorization".
-
-### 2c. Supply the authorization header and view your authentication status.
-Copy and paste the Authentication token into the "Custom Request Headers" section.
-Request the authentication status again.
+### 2c. Verify your authentication status.
 
 `api/authn/status`
 
@@ -49,7 +47,7 @@ The response body should now include the following status.
 
 Note: this authentication token will eventually expire.  Repeat step 1b if you need a new token.
 
-For the rest of this exercise, continue to provide the authorization header.
+For the rest of this exercise, the steps will make use of this authentication token.
 
 ## 3. View non-public content
 Note how these counts differ from your prior results.
@@ -67,6 +65,5 @@ Note how these counts differ from your prior results.
 The HAL browser does not yet pass authentication status to requests that modify data, so this exercise will stop here.
 
 Future modifications will enable more functionality through the browser.
-
 
 {% include nav.html %}
