@@ -38,7 +38,7 @@ Explore the community
 - Does the community have subcommunities?
   - (NOTE: Will the PR be in place that exposes subcommunities?)
 - Does the community contain collections?
-- Navigate the subcommunity hierarchy until you are able to retrieve a specific collection.
+- If not, navigate the subcommunity hierarchy until you are able to retrieve a specific collection.
 
 #### 2e. Request Collections within a subcommunity
 Use the HAL Browser to navigate to a subcommunity that contains collections.  List those collections.
@@ -46,7 +46,7 @@ Use the HAL Browser to navigate to a subcommunity that contains collections.  Li
 
 #### 2f. Expand an embedded collection resource
 Expand a collection in the embedded resources section of the HAL Browser to look at its data.
-- What is its title?
+- What is its name?
 
 ### 3. Items
 
@@ -78,12 +78,12 @@ Use the HAL Browser to view the bitstreams for a specific item.
 ### 4. EPersons and Groups
 
 #### 4a. View all EPersons
-Use the HAL Browser to view all people known to the repository.
+Use the HAL Browser to view all people (epersons) known to the repository.
 
 `api/eperson/epersons`
 
 #### 4b. View a specific EPerson
-Use the HAL Browser to view the data for a specific user.
+Use the HAL Browser to view the data for a specific user (eperson).
 
 `api/eperson/epersons/[uuid]`
 
