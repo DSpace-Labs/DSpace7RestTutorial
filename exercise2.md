@@ -24,18 +24,17 @@ In the response body, note the status
     authenticated: false
 
 ### 2b. From the authn endpoint, POST to the login method
-In order to perform a POST operation, you must use the NON-GET button "!".
-(This is not currerntly working)
-
-For convenience, the HAL browser also provides a login box at the top of the page.  
+For convenience, the HAL browser provides a login box at the top of the page.  
 Click "Login" and supply the credentials at the bottom of this page.
 
 Behind the scenes, the login box will perform the following operation.
 
-`api/auth/login`
+POST `api/auth/login`
 
 This action will return a response header named "Authorization" which contains an authorization token.  
 The HAL browser will pass this token in subsequent requests.
+
+When we use Postman, you will see this process in more detail.
 
 ### 2c. Verify your authentication status.
 
@@ -64,6 +63,8 @@ Note how these counts differ from your prior results.
 
 The HAL browser does not yet pass authentication status to requests that modify data, so this exercise will stop here.
 
-Future modifications will enable more functionality through the browser.
+As the DSpace REST code evolves, more Create/Update/Delete functionality will become available through the HAL browser.
+
+Note: the exclamation point in the HAL Browser is the mechanism that will be used to invoke POST/DELETE/PUT operations.
 
 {% include nav.html %}
