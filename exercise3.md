@@ -36,12 +36,4 @@ Note the change in results.
 
 Note the change in results.
 
-## 4. Restricted Content
-
-- TODO - Need to provide a sample query based on the test repo.
-
-?bitstreams
-
-Count the number of objects.  Note this number.
-
 {% include nav.html %}
