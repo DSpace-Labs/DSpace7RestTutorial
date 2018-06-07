@@ -6,4 +6,4 @@ github/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app
 
 ### With no additional parameters, find all object instances
 <script src="https://gist-it.appspot.com/
-github/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java?slice=769-787"></script>
+github/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java?slice=769:787"></script>
