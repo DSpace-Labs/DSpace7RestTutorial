@@ -95,8 +95,14 @@ public <T extends RestAddressableModel> PagedResources<DSpaceResource<T>> findAl
 @[8](This annotation maps a URL parameter to a method variable)
 @[8](When required is true, the method will fail if a param is not present)
 @[10](Find the "REST repository" object that will retrieve objects from DSpace)
+@[10](NOTE: We will examine the Repository object in a later slide)
 @[11-13](Create a "self" link to this method)
 @[17](Query for all items and load only a single page of items)
+@[17](NOTE: We will trace the findAll method in a later slide)
+@[17](repository::wrapResource is a Java 8 lambda function)
+@[17](NOTE: We will trace repository::wrapResource in a later slide)
+@[18](linkService::addLinks is a Java 8 lambda function)
+@[18](NOTE: We will trace linkService::addLinks in a later slide)
 +++
 #### [org.dspace.app.rest.repository.CommunitiyRestRepository](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L37)
 ```
