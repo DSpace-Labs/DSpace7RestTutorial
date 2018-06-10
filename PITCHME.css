@@ -2,5 +2,8 @@ code {
   background-color: #EEEEEE;
   color: red;
   display: inline-block;
-  width: 90%;
+}
+
+pre {
+  width 100%;
 }
