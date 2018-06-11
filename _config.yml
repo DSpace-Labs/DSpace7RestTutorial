@@ -25,5 +25,5 @@ nav:
   - {name: "Exercise 3 - Browsing the Repository with Postman", path: "/exercise3"}
   - {name: "Exercise 4 - Authenticating with Postman", path: "/exercise4"}
   - {name: "Tips for Using Postman", path: "/usingPostman"}
-  - {name: "Code Walkthrough", path: "walkthrough/intro"}
-  - {name: "Get Communities", path: "walkthrough/get-communities"}
+  - {name: "Code Walkthrough", path: "/walkthrough/intro"}
+  - {name: "Get Communities", path: "/walkthrough/get-communities"}
