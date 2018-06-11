@@ -131,6 +131,7 @@ Not yet documented...
   }
   return result;
 }
+```
 ---
 #### [org.dspace.app.rest.repository.CommunitiyRestRepository](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L37)
 ```
@@ -159,7 +160,7 @@ public Page<CommunityRest> findAll(Context context, Pageable pageable) {
 }
 ```
 ---
-###### [Lamda: org.dspace.app.rest.repository.CommunitiyRestRepository.wrapResource()](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L121-L124)
+###### [Lambda: org.dspace.app.rest.repository.CommunitiyRestRepository.wrapResource()](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L121-L124)
 ```
 ```  
 {% include nav.html %}
