@@ -4,6 +4,8 @@ In this exercise, we will note the additional capabilities that are enabled by a
 
 To illustrate the process, we will step through the authentication process manually.
 
+Use the URL and credentials in the footer of this page.
+
 Note: Postman does provide a mechanism to script authentication.
 
 ### 1a. View your authentication status
