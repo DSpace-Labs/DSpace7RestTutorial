@@ -1,4 +1,5 @@
 # Tips for using Postman
+{% include nav.html %}
 This is beyond the scope of the workshop.  The following notes may be helpful in configuring your environment.
 
 ## Create a Collection in Postman
@@ -32,3 +33,4 @@ pm.sendRequest(loginRequest, function (err, response) {
 ## In your requests
 
 Set Authorization to "Inherit from Parent"
+{% include nav.html %}

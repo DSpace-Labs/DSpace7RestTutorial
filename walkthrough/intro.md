@@ -1,5 +1,5 @@
 ## DSpace 7 REST Code Walkthrough
-
+{% include nav.html %}
 #### Understanding the DSpace 7 REST API
 - Before DSpace 7, most DSpace code used "plain old java objects"(POJO's)
 - This tutorial will illustrate how to understand the flow of the DSpace 7 code.
