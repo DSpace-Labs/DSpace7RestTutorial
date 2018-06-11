@@ -37,16 +37,6 @@ The __[Spring MVC Framework](https://docs.spring.io/spring/docs/current/spring-f
 The paths after /api will be stored in the variables apiCaterory and model
 
 ---
-### org.dspace.app.rest.RestResourceController [Code &rarr;](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L84-L87")
-
-```
-@RestController
-@RequestMapping("/api/{apiCategory}/{model}")
-@SuppressWarnings("rawtypes")
-public class RestResourceController implements InitializingBean {
-```
-
----
 
 ### Find the appropriate method to call
 
