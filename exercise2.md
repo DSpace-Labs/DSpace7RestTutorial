@@ -67,4 +67,6 @@ As the DSpace REST code evolves, more Create/Update/Delete functionality will be
 
 Note: the exclamation point in the HAL Browser is the mechanism that will be used to invoke POST/DELETE/PUT operations.
 
+
+{% include credentials.html %}
 {% include nav.html %}

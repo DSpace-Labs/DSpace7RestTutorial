@@ -84,4 +84,6 @@ DELETE `api/submission/workspaceitems/[id]`
 
 GET `api/submission/workspaceitems/[id]`
 
+
+{% include credentials.html %}
 {% include nav.html %}

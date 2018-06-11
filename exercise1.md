@@ -97,4 +97,5 @@ Use the HAL Browser to view the data for a specific user group.
 
 `api/eperson/groups/[uuid]`
 
+{% include credentials.html %}
 {% include nav.html %}

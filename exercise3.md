@@ -36,4 +36,6 @@ Note the change in results.
 
 Note the change in results.
 
+
+{% include credentials.html %}
 {% include nav.html %}
