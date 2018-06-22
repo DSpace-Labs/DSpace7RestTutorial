@@ -15,6 +15,7 @@
 {% else if site.nav_style == "dropdown" %}
 
 <select id="pnav">
+  <option>hi</option>
   {% for tnav in site.nav %}
     {% assign alt    = tnav.path | append: ".html" %}
     <option
