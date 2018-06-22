@@ -15,7 +15,7 @@
 {% else if site.nav_style == "dropdown" %}
 
 <select id="pnav">
-  <option>hi</option>
+  <option>hi1</option>
   {% for tnav in site.nav %}
     {% assign alt    = tnav.path | append: ".html" %}
     {% if tnav.path == page.url or alt == page.url %}
@@ -23,6 +23,7 @@
     {% endif %}
     <option value="{{tnav.path}}" selected="{{sel}}">{{tnav.name}}</option>
   {% endfor %}
+  <option>hi2</option>
 </select>
 <button onclick="alert(1)">GO</button>
 
