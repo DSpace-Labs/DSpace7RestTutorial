@@ -14,16 +14,15 @@
 
 {% else if site.nav_style == "dropdown" %}
 
-<select id="pnav">
-  {% for tnav in site.nav %}
-    {% assign alt    = tnav.path | append: ".html" %}
-    {% if tnav.path == page.url or alt == page.url %}
-      {% assign sel  = 1 %}
-    {% endif %}
-    <option value="{{tnav.path}}" selected="{{sel}}">{{tnav.name}}</option>
-  {% endfor %}
-</select>
-<button onclick="alert(1)">GO</button>
+  <div id="pnav">
+    {% for tnav in site.nav %}
+      {% assign alt    = tnav.path | append: ".html" %}
+      {% if tnav.path == page.url or alt == page.url %}
+        {% assign sel  = 1 %}
+      {% endif %}
+      <div value="{{tnav.path}}" selected="{{sel}}">{{tnav.name}}</div>
+    {% endfor %}
+  </div>
 
 {% else %}
 
