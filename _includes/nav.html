@@ -16,10 +16,6 @@
 
   <select id="pnav">
     {% for tnav in site.nav %}
-      {% assign alt    = tnav.path | append: ".html" %}
-      {% if tnav.path == page.url or alt == page.url %}
-        {% assign sel  = 1 %}
-      {% endif %}
       <option>A</option>
     {% endfor %}
   </select>
