@@ -21,7 +21,7 @@
     {% if tnav.path == page.url or alt == page.url %}
       {% assign sel  = 1 %}
     {% endif %}
-    <option value="{{tnav.path}}" selected="{{sel}}">{{tnav.name}}</option>
+    <li value="{{tnav.path}}" selected="{{sel}}">{{tnav.name}}</li>
   {% endfor %}
   <li>hi2</li>
 </ul>
