@@ -12,6 +12,18 @@
   </table>
 </div>
 
+{% else if site.nav_style == "dropdown" %}
+
+<select id="pnav">
+  {% for tnav in site.nav %}
+    {% assign alt    = tnav.path | append: ".html" %}
+    <option value=="{{tnav.path}}"
+      {% if tnav.path == page.url or alt == page.url %}selected="1"{% endif %}
+    >{{tnav.name}}</option>
+  {% endfor %}
+</select>
+<button onclick="alert(1)">GO</button>
+
 {% else %}
 
   {% assign curi = 0 %}
