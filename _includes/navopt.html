@@ -1,0 +1,7 @@
+{% for tnav in site.nav %}
+  {% assign alt    = tnav.path | append: ".html" %}
+  {% if tnav.path == page.url or alt == page.url %}
+    {% assign sel = 1 %}
+  {% endif %}
+  <option value="{{tnav.path}}" selected="{{sel}}">{{tnav.name}}</option>
+{% endfor %}
