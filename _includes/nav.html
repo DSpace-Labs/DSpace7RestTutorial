@@ -1,4 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 {% if site.nav_style == "menu" %}
 <div>
   <table>
@@ -12,10 +11,6 @@
     </tr>
   </table>
 </div>
-
-{% else if site.nav_style == "dropdown" %}
-  <select id="pnav">{% for tnav in site.nav %}{% assign alt    = tnav.path | append: ".html" %}<option value="{{tnav.path | prepend: site.url}}" {% if tnav.path == page.url or alt == page.url %}selected="1"{% endif %}>{{tnav.name}}</option>{% endfor %}</select>
-  <button onclick="document.location=$('#pnav').val()">GO</button>
 
 {% else %}
 

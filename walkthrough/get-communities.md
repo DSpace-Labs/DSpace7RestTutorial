@@ -1,5 +1,5 @@
 ## /api/core/communities
-{% include nav.html %}
+{% include navmenu.html %}
 #### Locate the Controller for this request
 The __[Spring MVC Framework](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.htm)__ looks for RestController annotations (org.springframework.web.bind.annotation.RestController).
 

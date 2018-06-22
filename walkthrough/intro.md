@@ -1,6 +1,6 @@
 ## DSpace 7 REST Code Walkthrough
 
-{% include nav.html %}
+{% include navmenu.html %}
 
 Before DSpace 7, most DSpace code used "plain old java objects"(POJO's)
 This tutorial will illustrate how to understand the flow of the DSpace 7 code.
