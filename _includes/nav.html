@@ -14,11 +14,7 @@
 
 {% else if site.nav_style == "dropdown" %}
 
-  <select id="pnav">
-    {% for tnav in site.nav %}
-      <option>A</option>
-    {% endfor %}
-  </select>
+  <select id="pnav">{% for tnav in site.nav %}<option>A</option>{% endfor %}</select>
 
 {% else %}
 
