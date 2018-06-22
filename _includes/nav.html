@@ -18,10 +18,7 @@
   <option>hi</option>
   {% for tnav in site.nav %}
     {% assign alt    = tnav.path | append: ".html" %}
-    <option
-      value="{{tnav.path}}"
-      {% if tnav.path == page.url or alt == page.url %}selected="1"{% endif %}
-    >{{tnav.name}}</option>
+    <option value="{{tnav.path}}" selected="{% if tnav.path == page.url or alt == page.url %}1{% endif %}">{{tnav.name}}</option>
   {% endfor %}
 </select>
 <button onclick="alert(1)">GO</button>
