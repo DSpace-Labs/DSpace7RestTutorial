@@ -13,8 +13,8 @@
 </div>
 
 {% else if site.nav_style == "dropdown" %}
-
-  <select id="pnav">{% include navopt.html %}</select>
+  {% assign opts = include navopt.html %}
+  <select id="pnav">{{opts}}</select>
 
 {% else %}
 
