@@ -16,7 +16,7 @@ restCredentials: dspacedemoadmin@mailinator.com / dspace
 exerciseUrl: http://bit.ly/dspace7-rest
 
 # nav_style: menu or button
-nav_style: button
+nav_style: dropdown
 nav:
   - {name: Home, path: "/"}
   - {name: Installation Pre-requisites, path: "/preparation"}
