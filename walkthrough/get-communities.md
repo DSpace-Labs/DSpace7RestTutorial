@@ -92,7 +92,7 @@ as it is added to the resources collection.
   try {
       resources = repository.findAll(page).map(repository::wrapResource);
 ```
-linkService::addLinks[See below&rarr;](#tbd) is a Java 8 lambda function that will operate on each object
+linkService::addLinks[See below&rarr;](#addlink) is a Java 8 lambda function that will operate on each object
 in the resources collection.
 ```
   resources.forEach(linkService::addLinks);
@@ -112,7 +112,7 @@ return status values.  See org.dspace.app.rest.exception.DSpaceApiExceptionContr
       throw mne;
   }
 ```
-Assemble resources in a HATEOAS compliant manner.
+Assemble the page of resources into "PagedResources" a HATEOAS compliant manner.  [Explanation](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/web/PagedResourcesAssembler.html#toResource-org.springframework.data.domain.Page-org.springframework.hateoas.Link-)
 ```
   PagedResources<DSpaceResource<T>> result = assembler.toResource(resources, link);
 ```
@@ -122,6 +122,70 @@ If a search method exists for this repository, create a link for it.
       result.add(linkTo(this.getClass(), apiCategory, model).slash("search").withRel("search"));
   }
   return result;
+}
+```
+---
+### <a name="wrap"></a>Lambda: org.dspace.app.rest.repository.CommunitiyRestRepository.wrapResource() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L121-L124)
+This method will wrap a CommunityRest object into a HATEOAS compliant resource container.
+```
+@Override
+public CommunityResource wrapResource(CommunityRest community, String... rels) {
+    return new CommunityResource(community, utils, rels);
+}
+```  
+---
+### <a name="addlink"></a>Lambda: org.dspace.app.rest.link.HalLinkService.addLinks(HalResource) [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/link/HalLinkService.java#L98-L105)
+```
+public HALResource addLinks(HALResource halResource) {
+    try {
+        addLinks(halResource, null);
+    } catch (Exception ex) {
+        log.warn("Unable to add links to HAL resource " + halResource, ex);
+    }
+    return halResource;
+}
+```
+
+This method will create the standard components displayed in the HAL Broswer (Properties, Links, Embedded Resources).
+
+org.dspace.app.rest.link.HalLinkService.addLinks(HalResource, Pageable)[Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/link/HalLinkService.java#L42-L77)
+
+```
+public void addLinks(HALResource halResource, Pageable pageable) throws Exception {
+    LinkedList<Link> links = new LinkedList<>();
+
+    List<HalLinkFactory> supportedFactories = getSupportedFactories(halResource);
+    for (HalLinkFactory halLinkFactory : supportedFactories) {
+        links.addAll(halLinkFactory.getLinksFor(halResource, pageable));
+    }
+
+    links.sort((Link l1, Link l2) -> ObjectUtils.compare(l1.getRel(), l2.getRel()));
+
+    halResource.add(links);
+
+    for (Object obj : halResource.getEmbeddedResources().values()) {
+        if (obj instanceof Collection) {
+            for (Object subObj : (Collection) obj) {
+                if (subObj instanceof HALResource) {
+                    addLinks((HALResource) subObj);
+                }
+            }
+        } else if (obj instanceof Map) {
+            for (Object subObj : ((Map) obj).values()) {
+                if (subObj instanceof HALResource) {
+                    addLinks((HALResource) subObj);
+                }
+            }
+        } else if (obj instanceof EmbeddedPage) {
+            for (Object subObj : ((EmbeddedPage) obj).getPageContent()) {
+                if (subObj instanceof HALResource) {
+                    addLinks((HALResource) subObj);
+                }
+            }
+        } else if (obj instanceof HALResource) {
+            addLinks((HALResource) obj);
+        }
+    }
 }
 ```
 ---
@@ -137,7 +201,7 @@ Spring uses java reflection to link the DSpace API's Community Service into this
       CommunityService cs;
 
 ```
-Spring uses java reflection to link the [CommunityConverter&rarr;](#tbd) class into the code.
+Spring uses java reflection to link the [CommunityConverter&rarr;](#convert) class into the code.
 This class will convert DSpace API Community objects into a representation within the REST API.
 ```
       @Autowired
@@ -164,7 +228,7 @@ Call the DSpace API Community Service to get a page of results.
          throw new RuntimeException(e.getMessage(), e);
      }
 ```
-Convert each result in the page set into its REST representation.
+Convert each result in the page set into its REST representation using the CommunityConverter.
 ```     
      Page<CommunityRest> page = new PageImpl<Community>(communities, pageable, total).map(converter);
      return page;
@@ -179,12 +243,123 @@ public class CommunityConverter
     extends DSpaceObjectConverter<org.dspace.content.Community, org.dspace.app.rest.model.CommunityRest> {
 ```
 ---
-### <a name="wrap"></a>Lambda: org.dspace.app.rest.repository.CommunitiyRestRepository.wrapResource() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L121-L124)
-This method will wrap a CommunityRest object into a HATEOAS compliant resource container.
+### org.dspace.app.rest.model.CommunityRest[Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/model/CommunityRest.java#L19-L68)
+
+This class helps to construct a JSON representation of the properties of a DSpace Object.
 ```
-@Override
-public CommunityResource wrapResource(CommunityRest community, String... rels) {
-    return new CommunityResource(community, utils, rels);
+public class CommunityRest extends DSpaceObjectRest {
+```
+Define the REST API path elements for this object
+```
+    public static final String NAME = "community";
+    public static final String CATEGORY = RestAddressableModel.CORE;
+```
+Linked objects will be accessible through links and will not be described in the JSON properties.
+```
+    @JsonIgnore
+    private BitstreamRest logo;
+
+    private List<CollectionRest> collections;
+
+    @LinkRest(linkClass = CollectionRest.class)
+    @JsonIgnore
+    public List<CollectionRest> getCollections() {
+        return collections;
+    }
+
+    public void setCollections(List<CollectionRest> collections) {
+        this.collections = collections;
+    }
+
+    private List<CommunityRest> subcommunities;
+
+    @LinkRest(linkClass = CommunityRest.class)
+    @JsonIgnore
+    public List<CommunityRest> getSubcommunities() {
+        return subcommunities;
+    }
+
+    public void setSubCommunities(List<CommunityRest> subcommunities) {
+        this.subcommunities = subcommunities;
+    }
+
+    public BitstreamRest getLogo() {
+        return logo;
+    }
+
+    public void setLogo(BitstreamRest logo) {
+        this.logo = logo;
+    }
+```
+The following attributes will be included in the JSON representation
+```
+    @Override
+    public String getCategory() {
+        return CATEGORY;
+    }
+
+    @Override
+    public String getType() {
+        return NAME;
+    }
+
 }
-```  
+```
+Other Standard DSpace attributes are defined in the base class.
+
+### org.dspace.app.rest.model.DSpaceObjectRest[Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/model/DSpaceObjectRest.java#L19-L68)
+```
+public abstract class DSpaceObjectRest extends BaseObjectRest<String> {
+    private String uuid;
+
+    private String name;
+    private String handle;
+
+    List<MetadataEntryRest> metadata;
+
+    @Override
+    public String getId() {
+        return uuid;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getHandle() {
+        return handle;
+    }
+
+    public void setHandle(String handle) {
+        this.handle = handle;
+    }
+
+    public List<MetadataEntryRest> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(List<MetadataEntryRest> metadata) {
+        this.metadata = metadata;
+    }
+
+    @Override
+    public Class getController() {
+        return RestResourceController.class;
+    }
+}
+```
+
+
 {% include nav.html %}
