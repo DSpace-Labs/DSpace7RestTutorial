@@ -3,14 +3,10 @@
 #### Locate the Controller for this request
 The __[Spring MVC Framework](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.htm)__ looks for RestController annotations (org.springframework.web.bind.annotation.RestController).
 
-The controller for this request will match `/api/{apiCategory}/{model}`
-- Values in curly braces are wildcard Values
-- After the match is made, portions of the URL path will be assigned to the following variables
-  - apiCategory
-  - model
+The best matched controller for this request will be defined as `/api/{apiCategory}/{model}`
 
 ---
-### org.dspace.app.rest.RestResourceController [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L84-L87")
+### org.dspace.app.rest.RestResourceController [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L85-L88")
 
 The following annotaion indicates that this class is a RestController
 ```
@@ -18,10 +14,14 @@ The following annotaion indicates that this class is a RestController
 ```
 This annotation registers a URL path pattern with this class.
 
-Note, any methods in this class that annotated with a path will be relative to this path.
+Note, any controller methods defined within this class will reference a path relative to the path assigned to the class.
 ```
 @RequestMapping("/api/{apiCategory}/{model}")
 ```
+- Values in curly braces are wildcard Values
+- After the match is made, portions of the URL path will be assigned to the following variables
+  - apiCategory
+  - model
 ```
 @SuppressWarnings("rawtypes")
 public class RestResourceController implements InitializingBean {
@@ -36,9 +36,9 @@ The class has already matched to /api/core/communities.  We need to locate the r
 ---
 ### org.dspace.app.rest.RestResourceController.findAll() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L769-L787")
 
-Register this method as the handler for a URL Path relative to the class URL path.  
+Register this method as the handler for a URL Path relative to the controller path defined at the class level.  
 
-Note that no additional path has been specified for this method.
+Note that no additional path has been specified for this method.  As we look at other methods, you will see that they operation on qualified paths.
 ```
 @RequestMapping(method = RequestMethod.GET)
 @SuppressWarnings("unchecked")
@@ -54,21 +54,24 @@ Remember that the following variables were extracted from the URL path at the cl
     @PathVariable String model,
 ```
 Pagination and sort parameters are extracted from the URL parameters.
-Parameter names confirm to Spring framework defaults.
+Parameter names confirm to Spring framework defaults for pagination.
 ```
     Pageable page,
     PagedResourcesAssembler assembler,
 ```
 This annotation maps a URL parameter to a method variable.
 When required is true, the method will fail if a param is not present.
-This annotation is a DSpace annotation.
+
+@RequestParam is a DSpace annotation.  This annotation will ensure consistent treatment
+of required parameters throughout the code base.  It should also provide a clear
+indication of parameter behavior for developers.
 ```
     @RequestParam(required = false) String projection,
 ```
 ```
     HttpServletResponse response) {
 ```
-Find the [REST repository object&rarr;](#rep) that will retrieve objects from DSpace.
+Find the REST Repository Object[See below&rarr;](#rep) that will retrieve objects from DSpace.
 ```
   DSpaceRestRepository<T, ?> repository = utils.getResourceRepository(apiCategory, model);
 ```
@@ -79,23 +82,32 @@ We will explore link creation in another section.
       page, assembler, projection, response))
       .withSelfRel();
 ```
-Query for all items and load only a single page of items [repository.findAll&rarr;](#repfind).
+Query for all items and load only a single page of items repository.findAll [See below&rarr;](#repfind).
 
-[repository::wrapResource&rarr;](#wrap) is a Java 8 lambda function.
+repository::wrapResource[See below&rarr;](#wrap) is a Java 8 lambda function that will operate on each object
+as it is added to the resources collection.
 
 ```
   Page<DSpaceResource<T>> resources;
   try {
       resources = repository.findAll(page).map(repository::wrapResource);
 ```
-[linkService::addLinks&rarr;](#tbd) is a Java 8 lambda function.
+linkService::addLinks[See below&rarr;](#tbd) is a Java 8 lambda function that will operate on each object
+in the resources collection.
 ```
   resources.forEach(linkService::addLinks);
 ```
-Error handling
+### Error handling
+If incorrect pagination parameters are provided, an empty list will be returned along with a total count of available resources.
 ```
   } catch (PaginationException pe) {
       resources = new PageImpl<DSpaceResource<T>>(new ArrayList<DSpaceResource<T>>(), page, pe.getTotal());
+```
+Other errors will be handled with an exception.
+
+The Spring MVC Framework allows exceptions to be captured in a single place.  Different types of exceptions can trigger different
+return status values.  See org.dspace.app.rest.exception.DSpaceApiExceptionControllerAdvice[Code&rarr;]( https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/exception/DSpaceApiExceptionControllerAdvice.java#L33-L94)
+```
   } catch (RepositoryMethodNotImplementedException mne) {
       throw mne;
   }
