@@ -97,7 +97,7 @@ This object can be used to inspect expected response values or to return specifi
 ```
 The [Hamcrest Java library](https://code.google.com/archive/p/hamcrest/wikis/Tutorial.wiki) is used to match json content.
 
-The DSpace REST API has implemented a set of matcher classes for DSpace objects. See [Package org.dspace.app.rest.matcher&rarr;] (https://github.com/DSpace/DSpace/tree/rest-tutorial/dspace-spring-rest/src/test/java/org/dspace/app/rest/matcher)
+The DSpace REST API has implemented a set of matcher classes for DSpace objects. See [Package org.dspace.app.rest.matcher&rarr;](https://github.com/DSpace/DSpace/tree/rest-tutorial/dspace-spring-rest/src/test/java/org/dspace/app/rest/matcher)
 
 The [CommunityMatcher](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/test/java/org/dspace/app/rest/matcher/CommunityMatcher.java) class examines particular Community object properties.
 ```
