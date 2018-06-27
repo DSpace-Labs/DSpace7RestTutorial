@@ -10,7 +10,7 @@ The controller for this request will match `/api/{apiCategory}/{model}`
   - model
 
 ---
-### org.dspace.app.rest.RestResourceController [Code&rarr;](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L84-L87")
+### org.dspace.app.rest.RestResourceController [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L84-L87")
 
 The following annotaion indicates that this class is a RestController
 ```
@@ -34,7 +34,7 @@ public class RestResourceController implements InitializingBean {
 The class has already matched to /api/core/communities.  We need to locate the request mapping that expects no additional path information.
 
 ---
-### org.dspace.app.rest.RestResourceController.findAll() [Code&rarr;](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L769-L787")
+### org.dspace.app.rest.RestResourceController.findAll() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L769-L787")
 
 Register this method as the handler for a URL Path relative to the class URL path.  
 
@@ -113,7 +113,7 @@ If a search method exists for this repository, create a link for it.
 }
 ```
 ---
-### <a name="rep"></a>org.dspace.app.rest.repository.CommunitiyRestRepository [Code&rarr;](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L37)
+### <a name="rep"></a>org.dspace.app.rest.repository.CommunitiyRestRepository [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L37)
 ```
 @Component(CommunityRest.CATEGORY + "." + CommunityRest.NAME)
 public class CommunityRestRepository extends DSpaceRestRepository<CommunityRest, UUID> {
@@ -132,7 +132,7 @@ This class will convert DSpace API Community objects into a representation withi
       CommunityConverter converter;
 ```
 ---
-### <a name="repfind"></a>org.dspace.app.rest.repository.CommunitiyRestRepository.findAll() [Code&rarr;](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L63-L79)
+### <a name="repfind"></a>org.dspace.app.rest.repository.CommunitiyRestRepository.findAll() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L63-L79)
 ```
 @Override
 public Page<CommunityRest> findAll(Context context, Pageable pageable) {
@@ -159,7 +159,7 @@ Convert each result in the page set into its REST representation.
 }
 ```
 ---
-### <a name="convert"></a>Lambda: org.dspace.app.rest.converter.CommunityConverter [Code&rarr;](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/converter/CommunityConverter.java#L27-L29)
+### <a name="convert"></a>Lambda: org.dspace.app.rest.converter.CommunityConverter [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/converter/CommunityConverter.java#L27-L29)
 This class will convert a DSpace API Community object into a REST representation of a Community object.
 ```
 @Component
@@ -167,7 +167,7 @@ public class CommunityConverter
     extends DSpaceObjectConverter<org.dspace.content.Community, org.dspace.app.rest.model.CommunityRest> {
 ```
 ---
-### <a name="wrap"></a>Lambda: org.dspace.app.rest.repository.CommunitiyRestRepository.wrapResource() [Code&rarr;](https://github.com/DSpace/DSpace/blob/master/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L121-L124)
+### <a name="wrap"></a>Lambda: org.dspace.app.rest.repository.CommunitiyRestRepository.wrapResource() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L121-L124)
 This method will wrap a CommunityRest object into a HATEOAS compliant resource container.
 ```
 @Override
