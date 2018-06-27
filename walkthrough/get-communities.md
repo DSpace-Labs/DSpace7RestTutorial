@@ -6,7 +6,7 @@ The __[Spring MVC Framework](https://docs.spring.io/spring/docs/current/spring-f
 The best matched controller for this request will be defined as `/api/{apiCategory}/{model}`
 
 ---
-### org.dspace.app.rest.RestResourceController [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L85-L88")
+### Class org.dspace.app.rest.RestResourceController [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L85-L88")
 
 The following annotaion indicates that this class is a RestController
 ```
@@ -34,7 +34,7 @@ public class RestResourceController implements InitializingBean {
 The class has already matched to /api/core/communities.  We need to locate the request mapping that expects no additional path information.
 
 ---
-### org.dspace.app.rest.RestResourceController.findAll() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L769-L787")
+### Method org.dspace.app.rest.RestResourceController.findAll() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L769-L787")
 
 Register this method as the handler for a URL Path relative to the controller path defined at the class level.  
 
@@ -107,7 +107,7 @@ If incorrect pagination parameters are provided, an empty list will be returned 
 Other errors will be handled with an exception.
 
 The Spring MVC Framework allows exceptions to be captured in a single place.  Different types of exceptions can trigger different
-return status values.  See org.dspace.app.rest.exception.DSpaceApiExceptionControllerAdvice[Code&rarr;]( https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/exception/DSpaceApiExceptionControllerAdvice.java#L33-L94)
+return status values.  See **org.dspace.app.rest.exception.DSpaceApiExceptionControllerAdvice** [Code&rarr;]( https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/exception/DSpaceApiExceptionControllerAdvice.java#L33-L94)
 ```
   } catch (RepositoryMethodNotImplementedException mne) {
       throw mne;
@@ -126,7 +126,7 @@ If a search method exists for this repository, create a link for it.
 }
 ```
 ---
-### <a name="wrap"></a>Lambda: org.dspace.app.rest.repository.CommunitiyRestRepository.wrapResource() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L121-L124)
+### <a name="wrap"></a>Lambda: org.dspace.app.rest.repository.CommunitiyRestRepository.wrapResource()  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L121-L124)
 This method will wrap a CommunityRest object into a HATEOAS compliant resource container.
 ```
 @Override
@@ -135,7 +135,7 @@ public CommunityResource wrapResource(CommunityRest community, String... rels) {
 }
 ```  
 ---
-### <a name="addlink"></a>Lambda: org.dspace.app.rest.link.HalLinkService.addLinks(HalResource) [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/link/HalLinkService.java#L98-L105)
+### <a name="addlink"></a>Lambda: org.dspace.app.rest.link.HalLinkService.addLinks(HalResource)  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/link/HalLinkService.java#L98-L105)
 ```
 public HALResource addLinks(HALResource halResource) {
     try {
@@ -149,7 +149,7 @@ public HALResource addLinks(HALResource halResource) {
 
 This method will create the standard components displayed in the HAL Broswer (Properties, Links, Embedded Resources).
 
-#### org.dspace.app.rest.link.HalLinkService.addLinks(HalResource, Pageable)[Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/link/HalLinkService.java#L42-L77)
+#### Method org.dspace.app.rest.link.HalLinkService.addLinks(HalResource, Pageable) [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/link/HalLinkService.java#L42-L77)
 
 ```
 public void addLinks(HALResource halResource, Pageable pageable) throws Exception {
@@ -190,7 +190,7 @@ public void addLinks(HALResource halResource, Pageable pageable) throws Exceptio
 }
 ```
 ---
-### <a name="rep"></a>org.dspace.app.rest.repository.CommunitiyRestRepository [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L37)
+### <a name="rep"></a>Class org.dspace.app.rest.repository.CommunitiyRestRepository  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L37)
 ```
 @Component(CommunityRest.CATEGORY + "." + CommunityRest.NAME)
 public class CommunityRestRepository extends DSpaceRestRepository<CommunityRest, UUID> {
@@ -209,7 +209,7 @@ This class will convert DSpace API Community objects into a representation withi
       CommunityConverter converter;
 ```
 ---
-### <a name="repfind"></a>org.dspace.app.rest.repository.CommunitiyRestRepository.findAll() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L63-L79)
+### <a name="repfind"></a>Method org.dspace.app.rest.repository.CommunitiyRestRepository.findAll()  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L63-L79)
 ```
 @Override
 public Page<CommunityRest> findAll(Context context, Pageable pageable) {
@@ -236,7 +236,7 @@ Convert each result in the page set into its REST representation using the Commu
 }
 ```
 ---
-### <a name="convert"></a>Lambda: org.dspace.app.rest.converter.CommunityConverter [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/converter/CommunityConverter.java#L27-L29)
+### <a name="convert"></a>Class org.dspace.app.rest.converter.CommunityConverter  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/converter/CommunityConverter.java#L27-L29)
 This class will convert a DSpace API Community object into a REST representation of a Community object.
 ```
 @Component
@@ -244,7 +244,7 @@ public class CommunityConverter
     extends DSpaceObjectConverter<org.dspace.content.Community, org.dspace.app.rest.model.CommunityRest> {
 ```
 ---
-### org.dspace.app.rest.model.CommunityRest[Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/model/CommunityRest.java#L19-L68)
+### Class org.dspace.app.rest.model.CommunityRest [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/model/CommunityRest.java#L19-L68)
 
 This class helps to construct a JSON representation of the properties of a DSpace Object.
 ```
@@ -308,7 +308,7 @@ The following attributes will be included in the JSON representation
 ```
 Other Standard DSpace attributes are defined in the base class.
 
-### org.dspace.app.rest.model.DSpaceObjectRest[Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/model/DSpaceObjectRest.java#L19-L68)
+### Class org.dspace.app.rest.model.DSpaceObjectRest [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/model/DSpaceObjectRest.java#L19-L68)
 ```
 public abstract class DSpaceObjectRest extends BaseObjectRest<String> {
     private String uuid;
