@@ -1,4 +1,5 @@
 # Exercise 2: Authenticating with the HAL Browser
+{% include navmenu.html %}
 
 ## 1. Searching for objects in an unauthenticated session
 In this step, you will run a couple of DSpace discovery searches before authenticating and note the result counts.

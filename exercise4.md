@@ -1,4 +1,5 @@
 # Exercise 4: Authenticating with Postman
+{% include navmenu.html %}
 
 In this exercise, we will note the additional capabilities that are enabled by authenticating as a DSpace user in Postman.  
 

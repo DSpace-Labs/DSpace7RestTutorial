@@ -1,4 +1,6 @@
 # DSpace7RestTutorial
+{% include navmenu.html %}
+
 Tutorial Resources for the OR2018 REST7 PreConference (Under development)
 
 ## Tutorial Objectives
@@ -15,4 +17,5 @@ Tutorial Resources for the OR2018 REST7 PreConference (Under development)
 ## After the Tutorial - Get Involved!
 (Add resource links here)
 
+{% include credentials.html %}
 {% include nav.html %}

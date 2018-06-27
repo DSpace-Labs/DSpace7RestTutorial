@@ -1,4 +1,5 @@
 # DSpace 7 REST Tutorial
+{% include navmenu.html %}
 
 ## Welcome
 

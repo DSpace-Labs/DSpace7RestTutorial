@@ -1,4 +1,5 @@
 # Exercise 1: Exploring Endpoints with HAL Browser
+{% include navmenu.html %}
 
 ### 1. Open the HAL Browser landing page
 
