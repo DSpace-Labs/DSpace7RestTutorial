@@ -1,6 +1,9 @@
-## /api/core/communities
 {% include navmenu.html %}
-#### Locate the Controller for this request
+# GET /api/core/communities
+
+## Get Communities Controller
+---
+### Locate the Controller for this request
 The __[Spring MVC Framework](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.htm)__ looks for RestController annotations (org.springframework.web.bind.annotation.RestController).
 
 The best matched controller for this request will be defined as `/api/{apiCategory}/{model}`
@@ -107,13 +110,15 @@ If incorrect pagination parameters are provided, an empty list will be returned 
 Other errors will be handled with an exception.
 
 The Spring MVC Framework allows exceptions to be captured in a single place.  Different types of exceptions can trigger different
-return status values.  See **org.dspace.app.rest.exception.DSpaceApiExceptionControllerAdvice** [Code&rarr;]( https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/exception/DSpaceApiExceptionControllerAdvice.java#L33-L94)
+return status values.  See **Class org.dspace.app.rest.exception.DSpaceApiExceptionControllerAdvice** [Code&rarr;]( https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/exception/DSpaceApiExceptionControllerAdvice.java#L33-L94)
 ```
   } catch (RepositoryMethodNotImplementedException mne) {
       throw mne;
   }
 ```
-Assemble the page of resources into "PagedResources" a HATEOAS compliant manner.  [Explanation](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/web/PagedResourcesAssembler.html#toResource-org.springframework.data.domain.Page-org.springframework.hateoas.Link-)
+Assemble the page of resources into "PagedResources" a HATEOAS compliant manner.
+- "Creates a new PagedResources by converting the given Page into a PagedResources.PageMetadata instance and wrapping the contained elements into Resource instances. Will add pagination links based on the given the self link."
+  - from [Spring Framework JavaDoc](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/web/PagedResourcesAssembler.html#toResource-org.springframework.data.domain.Page-org.springframework.hateoas.Link-)
 ```
   PagedResources<DSpaceResource<T>> result = assembler.toResource(resources, link);
 ```
@@ -126,8 +131,57 @@ If a search method exists for this repository, create a link for it.
 }
 ```
 ---
+## Communities Repository
+---
+
+### <a name="rep"></a>Class org.dspace.app.rest.repository.CommunitiyRestRepository  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L37)
+```
+@Component(CommunityRest.CATEGORY + "." + CommunityRest.NAME)
+public class CommunityRestRepository extends DSpaceRestRepository<CommunityRest, UUID> {
+
+```
+Spring uses java reflection to link the DSpace API's Community Service into this class.
+```
+      @Autowired
+      CommunityService cs;
+
+```
+Spring uses java reflection to link the [CommunityConverter&rarr;](#convert) class into the code.
+This class will convert DSpace API Community objects into a representation within the REST API.
+```
+      @Autowired
+      CommunityConverter converter;
+```
+---
+### <a name="repfind"></a>Method org.dspace.app.rest.repository.CommunitiyRestRepository.findAll()  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L63-L79)
+```
+@Override
+public Page<CommunityRest> findAll(Context context, Pageable pageable) {
+     List<Community> it = null;
+     List<Community> communities = new ArrayList<Community>();
+     int total = 0;
+     try {
+```
+Call the DSpace API Community Service to get a page of results.
+```      
+         total = cs.countTotal(context);
+         it = cs.findAll(context, pageable.getPageSize(), pageable.getOffset());
+         for (Community c : it) {
+             communities.add(c);
+         }
+     } catch (SQLException e) {
+         throw new RuntimeException(e.getMessage(), e);
+     }
+```
+Convert each result in the page set into its REST representation using the CommunityConverter.
+```     
+     Page<CommunityRest> page = new PageImpl<Community>(communities, pageable, total).map(converter);
+     return page;
+}
+```
+---
 ### <a name="wrap"></a>Lambda: org.dspace.app.rest.repository.CommunitiyRestRepository.wrapResource()  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L121-L124)
-This method will wrap a CommunityRest object into a HATEOAS compliant resource container.
+This method will wrap a CommunityRest object into a HAL compliant resource container.
 ```
 @Override
 public CommunityResource wrapResource(CommunityRest community, String... rels) {
@@ -190,51 +244,7 @@ public void addLinks(HALResource halResource, Pageable pageable) throws Exceptio
 }
 ```
 ---
-### <a name="rep"></a>Class org.dspace.app.rest.repository.CommunitiyRestRepository  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L37)
-```
-@Component(CommunityRest.CATEGORY + "." + CommunityRest.NAME)
-public class CommunityRestRepository extends DSpaceRestRepository<CommunityRest, UUID> {
-
-```
-Spring uses java reflection to link the DSpace API's Community Service into this class.
-```
-      @Autowired
-      CommunityService cs;
-
-```
-Spring uses java reflection to link the [CommunityConverter&rarr;](#convert) class into the code.
-This class will convert DSpace API Community objects into a representation within the REST API.
-```
-      @Autowired
-      CommunityConverter converter;
-```
----
-### <a name="repfind"></a>Method org.dspace.app.rest.repository.CommunitiyRestRepository.findAll()  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L63-L79)
-```
-@Override
-public Page<CommunityRest> findAll(Context context, Pageable pageable) {
-     List<Community> it = null;
-     List<Community> communities = new ArrayList<Community>();
-     int total = 0;
-     try {
-```
-Call the DSpace API Community Service to get a page of results.
-```      
-         total = cs.countTotal(context);
-         it = cs.findAll(context, pageable.getPageSize(), pageable.getOffset());
-         for (Community c : it) {
-             communities.add(c);
-         }
-     } catch (SQLException e) {
-         throw new RuntimeException(e.getMessage(), e);
-     }
-```
-Convert each result in the page set into its REST representation using the CommunityConverter.
-```     
-     Page<CommunityRest> page = new PageImpl<Community>(communities, pageable, total).map(converter);
-     return page;
-}
-```
+## Community Converter
 ---
 ### <a name="convert"></a>Class org.dspace.app.rest.converter.CommunityConverter  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/converter/CommunityConverter.java#L27-L29)
 This class will convert a DSpace API Community object into a REST representation of a Community object.
@@ -243,6 +253,8 @@ This class will convert a DSpace API Community object into a REST representation
 public class CommunityConverter
     extends DSpaceObjectConverter<org.dspace.content.Community, org.dspace.app.rest.model.CommunityRest> {
 ```
+---
+## Community REST Model
 ---
 ### Class org.dspace.app.rest.model.CommunityRest [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/model/CommunityRest.java#L19-L68)
 
@@ -361,6 +373,5 @@ public abstract class DSpaceObjectRest extends BaseObjectRest<String> {
     }
 }
 ```
-
 
 {% include nav.html %}
