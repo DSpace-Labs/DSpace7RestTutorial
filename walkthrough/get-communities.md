@@ -97,7 +97,8 @@ in the resources collection.
 ```
   resources.forEach(linkService::addLinks);
 ```
-### Error handling
+Error handling
+
 If incorrect pagination parameters are provided, an empty list will be returned along with a total count of available resources.
 ```
   } catch (PaginationException pe) {
@@ -148,7 +149,7 @@ public HALResource addLinks(HALResource halResource) {
 
 This method will create the standard components displayed in the HAL Broswer (Properties, Links, Embedded Resources).
 
-org.dspace.app.rest.link.HalLinkService.addLinks(HalResource, Pageable)[Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/link/HalLinkService.java#L42-L77)
+#### org.dspace.app.rest.link.HalLinkService.addLinks(HalResource, Pageable)[Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/link/HalLinkService.java#L42-L77)
 
 ```
 public void addLinks(HALResource halResource, Pageable pageable) throws Exception {
