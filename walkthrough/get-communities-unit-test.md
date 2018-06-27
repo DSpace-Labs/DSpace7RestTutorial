@@ -54,6 +54,7 @@ Construct the following Hierarchy
 - Parent Community
   - Sub Community
     - Collection 1
+
 ```
         //** GIVEN **
         //1. A community-collection structure with one parent community with sub-community and one collection.
@@ -89,6 +90,7 @@ This object can be used to inspect expected response values or to return specifi
 - the status code can be inspected
 - the content type of the return data can be inspected
 - if json is returned, the json object can be inspected
+
 ```
                    .andExpect(status().isOk())
                    .andExpect(content().contentType(contentType))
@@ -159,6 +161,7 @@ In this instance, the request is being modified with the addition of 2 url param
 Since the page size has been set to 1, the /core/communites request will return 2 pages.  
 - Parent Community
 - Sub Community
+
 ```
         getClient().perform(get("/api/core/communities")
                                 .param("size", "1")
