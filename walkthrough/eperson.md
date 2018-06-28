@@ -72,8 +72,7 @@ public Page<EPersonRest> findAll(Context context, Pageable pageable) {
 }
 
 ```
-### [Search test](https://github.com/DSpace/DSpace/commit/3e7ab875d774eb9da4e819545dd21709663eeb37)
-dspace-spring-rest/src/test/java/org/dspace/app/rest/EPersonRestRepositoryIT.java
+### Create EPerson Search Test Methods in org.dspace.app.rest.EPersonRestRepositoryIT [Commit&rarr;](https://github.com/DSpace/DSpace/commit/3e7ab875d774eb9da4e819545dd21709663eeb37)
 ```
 @Test
  public void searchMethodsExist() throws Exception {
@@ -212,8 +211,7 @@ dspace-spring-rest/src/test/java/org/dspace/app/rest/EPersonRestRepositoryIT.jav
 
 }
 ```
-### [Search stub](https://github.com/DSpace/DSpace/commit/84ce25070eb7078457bd4d15f5a76a7e306871b7)
-dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/EPersonRestRepository.java
+### Create Stub Search Methods in org.dspace.app.rest.repository.EPersonRestRepository [Commit&rarr;](https://github.com/DSpace/DSpace/commit/84ce25070eb7078457bd4d15f5a76a7e306871b7)
 ```
 @SearchRestMethod(name = "byName")
 public Page<EPersonRest> findByName(@Parameter(value = "q") String q,
@@ -226,7 +224,7 @@ public EPersonRest findByEmail(@Parameter(value = "email") String email) {
   return null;
 }
 ```
-### [Search mand param](https://github.com/DSpace/DSpace/commit/ef4695903bbf60022aac4b2748ad1e949846b34b)
+### Add Mandatory Parameter to search methods in org.dspace.app.rest.repository.EPersonRestRepository [Commit&rarr;](https://github.com/DSpace/DSpace/commit/ef4695903bbf60022aac4b2748ad1e949846b34b)
 ```
 @SearchRestMethod(name = "byName")
 public Page<EPersonRest> findByName(@Parameter(value = "q", required = true) String q,
@@ -240,8 +238,7 @@ public EPersonRest findByEmail(@Parameter(value = "email", required = true) Stri
 }
 
 ```
-### [Search impl](https://github.com/DSpace/DSpace/commit/162cc7a01d13332aea6fd01a877ea91bb18bf15b)
- dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/EPersonRestRepository.java
+### Add search logic to search methods in org.dspace.app.rest.repository.EPersonRestRepository [Commit&rarr;](https://github.com/DSpace/DSpace/commit/162cc7a01d13332aea6fd01a877ea91bb18bf15b)
 ```
 @SearchRestMethod(name = "byName")
 public Page<EPersonRest> findByName(@Parameter(value = "q", required = true) String q,
