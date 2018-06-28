@@ -1,5 +1,5 @@
-# Exercise 3: Browsing the Repository with Postman
 {% include navmenu.html %}
+# Exercise 3: Browsing the Repository with Postman
 
 ### 1. Use Postman to load the REST API landing page
 [{{site.restService}}]({{site.restService}})

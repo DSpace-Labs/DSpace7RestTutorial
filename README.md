@@ -1,7 +1,7 @@
-# DSpace7RestTutorial
 {% include navmenu.html %}
+# Tutorial Resources for Leaning the DSpace 7 REST API
 
-Tutorial Resources for the OR2018 REST7 PreConference (Under development)
+This material was initially created for the OR2018 REST7 PreConference Session.  
 
 ## Tutorial Objectives
 - Learn the functionality that will be provided by the DSpace 7 REST API

@@ -1,11 +1,8 @@
-# DSpace 7 REST Tutorial
 {% include navmenu.html %}
 
-## Welcome
+# DSpace 7 REST Tutorial
 
-Thank you for registering to attend the DSpace 7 REST API Tutorial.  The REST API will become the core interface for the future DSpace User Interface and any future applications that will be built on top of DSpace.
-
-The workshop has been designed to offer something for attendees with various levels of experience with the DSpace code base.  
+The REST API will become the core interface for the future DSpace User Interface and any future applications that will be built on top of DSpace.
 
 We look forward to sharing with the progress that has been made so far with the API and sharing with you the work yet to be done.  We hope you leave the workshop with greater knowledge and comfort with the REST API.  We also hope to inspire you to contribute your code, documentation, and testing skills to the development of the API.
 
@@ -20,8 +17,6 @@ We look forward to sharing with the progress that has been made so far with the 
 ## Installation Pre-requisites
 This will allow you to interact with a public instance of the DSpace REST API and to explore the available endpoints.
 - A laptop with a browser (Chrome, Firefox, or Safari)
-
-Note: If you are traveling without a laptop or if you do not have the pre-requisite software, please join us and plan to shadow another workshop participant.
 
 ### Optional Installation
 These recommendations will allow you to simulate an application that can interact with the REST api.
