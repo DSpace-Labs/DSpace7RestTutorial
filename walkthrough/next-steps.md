@@ -1,7 +1,7 @@
 {% include navmenu.html %}
 
 ## Next Steps
----
+
 
 Get Involved!  
 

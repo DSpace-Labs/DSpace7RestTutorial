@@ -2,13 +2,13 @@
 # GET /api/core/communities
 
 ## Get Communities Controller
----
+
 ### Locate the Controller for this request
 The __[Spring MVC Framework](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.htm)__ looks for RestController annotations (org.springframework.web.bind.annotation.RestController).
 
 The best matched controller for this request will be defined as `/api/{apiCategory}/{model}`
 
----
+
 ### Class org.dspace.app.rest.RestResourceController [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L85-L88")
 
 The following annotaion indicates that this class is a RestController
@@ -30,13 +30,13 @@ Note, any controller methods defined within this class will reference a path rel
 public class RestResourceController implements InitializingBean {
 ```
 
----
+
 
 ### Find the appropriate method to call
 
 The class has already matched to /api/core/communities.  We need to locate the request mapping that expects no additional path information.
 
----
+
 ### Method org.dspace.app.rest.RestResourceController.findAll() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L769-L787")
 
 Register this method as the handler for a URL Path relative to the controller path defined at the class level.  
@@ -131,9 +131,9 @@ If a search method exists for this repository, create a link for it.
   return result;
 }
 ```
----
+
 ## Communities Repository
----
+
 
 ### <a name="rep"></a>Class org.dspace.app.rest.repository.CommunitiyRestRepository  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L37)
 ```
@@ -153,7 +153,7 @@ This class will convert DSpace API Community objects into a representation withi
       @Autowired
       CommunityConverter converter;
 ```
----
+
 ### <a name="repfind"></a>Method org.dspace.app.rest.repository.CommunitiyRestRepository.findAll()  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L63-L79)
 ```
 @Override
@@ -180,7 +180,7 @@ Convert each result in the page set into its REST representation using the Commu
      return page;
 }
 ```
----
+
 ### <a name="wrap"></a>Lambda: org.dspace.app.rest.repository.CommunitiyRestRepository.wrapResource()  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L121-L124)
 This method will wrap a CommunityRest object into a HAL compliant resource container.
 ```
@@ -189,7 +189,7 @@ public CommunityResource wrapResource(CommunityRest community, String... rels) {
     return new CommunityResource(community, utils, rels);
 }
 ```  
----
+
 ### <a name="addlink"></a>Lambda: org.dspace.app.rest.link.HalLinkService.addLinks(HalResource)  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/link/HalLinkService.java#L98-L105)
 ```
 public HALResource addLinks(HALResource halResource) {
@@ -244,9 +244,9 @@ public void addLinks(HALResource halResource, Pageable pageable) throws Exceptio
     }
 }
 ```
----
+
 ## Community Converter
----
+
 ### <a name="convert"></a>Class org.dspace.app.rest.converter.CommunityConverter  [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/converter/CommunityConverter.java#L27-L29)
 This class will convert a DSpace API Community object into a REST representation of a Community object.
 ```
@@ -254,9 +254,9 @@ This class will convert a DSpace API Community object into a REST representation
 public class CommunityConverter
     extends DSpaceObjectConverter<org.dspace.content.Community, org.dspace.app.rest.model.CommunityRest> {
 ```
----
+
 ## Community REST Model
----
+
 ### Class org.dspace.app.rest.model.CommunityRest [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/model/CommunityRest.java#L19-L68)
 
 This class helps to construct a JSON representation of the properties of a DSpace Object.

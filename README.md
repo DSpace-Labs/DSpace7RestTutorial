@@ -12,7 +12,7 @@ Tutorial Resources for the OR2018 REST7 PreConference (Under development)
 - Learn how to code a new endpoint within the REST API
 
 ## Tutorial Slides
-(TBD)
+- [Workshop Slides](https://tinyurl.com/or2018-dspace-rest)
 
 ## After the Tutorial - Get Involved!
 (Add resource links here)

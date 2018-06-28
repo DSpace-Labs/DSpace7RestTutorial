@@ -42,9 +42,9 @@ public Page<CommunityRest> findAllTop(Pageable pageable) {
 
 ```
 
----
+
 ### Unit Test
----
+
 https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/test/java/org/dspace/app/rest/CommunityRestRepositoryIT.java#L210-L256
 ```
 @Test

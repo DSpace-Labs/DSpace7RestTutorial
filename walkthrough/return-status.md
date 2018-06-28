@@ -2,7 +2,7 @@
 
 # Scenarios Returning a Special Return Status
 
----
+
 ## Unsupported Operation: GET /core/does-not-exist
 
 This request will match the following controller:
@@ -54,7 +54,7 @@ Note that this class extends RuntimeException
 @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "This endpoint is not found in the system")
 public class RepositoryNotFoundException extends RuntimeException {
 ```
----
+
 
 The following class handles exceptions for the Spring MVC Framework because of the presence of
 - The @ControllerAdvice annotation on the class AND
@@ -73,7 +73,7 @@ default exception handling within Spring is invoked and a **404** Status Code (*
 <div class="todo">
 TODO: confirm that there is no other DSpace code triggering the 404.
 </div>
----
+
 
 ## Missing Required Parameter: GET /core/communities/search/subCommunities
 
@@ -89,7 +89,7 @@ public class RestResourceController implements InitializingBean {
 
 Based on the path specified, the following method will be invoked.
 
----
+
 ### Method org.dspace.app.rest.RestResourceController.executeSearchMethods()
 
 Parameters
@@ -145,7 +145,7 @@ Once the appropriate search method has been found, **org.dspace.app.rest.utils.U
     return result;
 }
 ```
----
+
 ### Method org.dspace.rest.utils.Utils.getSearchMethod()
 ```
     public Method getSearchMethod(String searchMethodName, DSpaceRestRepository repository) {
@@ -169,7 +169,7 @@ This method will search the code for the Annotation **org.dspace.app.rest.Search
         return searchMethod;
     }
 ```
----
+
 The following method contains the matching **@SearchRestMethod** annotation.
 
 ### Method org.dspace.app.rest.repository.CommunityRepository.findSubCommunities()
@@ -200,7 +200,7 @@ public Page<CommunityRest> findSubCommunities(@Parameter(value = "parent", requi
     return page;
 }
 ```
----
+
 ### Annotation Interface org.dspace.app.rest.Parameter
 ```
 @Retention(RetentionPolicy.RUNTIME)
@@ -247,7 +247,7 @@ In our example, the parameter named **parent** is required.  Since this paramete
     return invokeQueryMethod(repository, method, result, pageable, sort);
 }
 ```
----
+
 The **DSpaceApiExceptionControllerAdvice** class will be scanned for an appropriate exception handler for a MissingParameterException.
 
 ### Method org.dspace.app.exception.DSpaceApiExceptionControllerAdvice.MissingParameterException()
@@ -267,7 +267,7 @@ protected void MissingParameterException(HttpServletRequest request, HttpServlet
 }
 
 ```
----
+
 ## Attempt to Delete a Workspace Item (Unauthenticated): DELETE /submission/workspaceitems/111
 
 This request will match the following controller:
@@ -282,7 +282,7 @@ public class RestResourceController implements InitializingBean {
 
 Based on the path specified, the following method will be invoked.
 
----
+
 ### Method org.dspace.app.rest.RestResourceController.delete()
 
 Parameters
@@ -298,7 +298,7 @@ public ResponseEntity<ResourceSupport> delete(HttpServletRequest request, @PathV
     return deleteInternal(apiCategory, model, id);
 }
 ```
----
+
 ### Method org.dspace.app.rest.RestResourceController.deleteInternal()
 ```
 private <ID extends Serializable> ResponseEntity<ResourceSupport> deleteInternal(String apiCategory, String model,
@@ -309,7 +309,7 @@ private <ID extends Serializable> ResponseEntity<ResourceSupport> deleteInternal
     return ControllerUtils.toEmptyResponse(HttpStatus.NO_CONTENT);
 }
 ```
----
+
 ### Method org.dspace.app.rest.utils.Utils.getResourceRepository()
 
 This method will return the appropriate Repository class.
@@ -323,13 +323,13 @@ public DSpaceRestRepository getResourceRepository(String apiCategory, String mod
     }
 }
 ```
----
+
 ### Class org.dspace.app.rest.repository.WorkspaceItemRestRepository
 ```
 @Component(WorkspaceItemRest.CATEGORY + "." + WorkspaceItemRest.NAME)
 public class WorkspaceItemRestRepository extends DSpaceRestRepository<WorkspaceItemRest, Integer> {
 ```
----
+
 ### Method org.dspace.app.rest.repository.WorkspaceItemRestRepository.delete()
 This method invokes the DSpace API to perform the delete operation.
 
@@ -346,7 +346,7 @@ protected void delete(Context context, Integer id) throws AuthorizeException {
     }
 }
 ```
----
+
 The **DSpaceApiExceptionControllerAdvice** class will be scanned for an appropriate exception handler for an AuthorizeException.
 
 ### Method org.dspace.app.exception.DSpaceApiExceptionControllerAdvice.handleAuthorizeException()
@@ -366,7 +366,7 @@ protected void handleAuthorizeException(HttpServletRequest request, HttpServletR
     }
 }
 ```
----
+
 ## Attempt to Delete a Workspace Item (Authorized): DELETE /submission/workspaceitems/111
 
 Repeating the prior scenario, imagine that the user is authorized to perform the delete operation.
@@ -383,7 +383,7 @@ public class RestResourceController implements InitializingBean {
 
 Based on the path specified, the following method will be invoked.
 
----
+
 ### Method org.dspace.app.rest.RestResourceController.delete()
 
 Parameters
@@ -399,7 +399,7 @@ public ResponseEntity<ResourceSupport> delete(HttpServletRequest request, @PathV
     return deleteInternal(apiCategory, model, id);
 }
 ```
----
+
 ### Method org.dspace.app.rest.RestResourceController.deleteInternal()
 ```
 private <ID extends Serializable> ResponseEntity<ResourceSupport> deleteInternal(String apiCategory, String model,

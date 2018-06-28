@@ -4,7 +4,7 @@
 <div class="todo">
 **This page is under construction**
 </div>
----
+
 See code in [or2018-workshop commits](https://github.com/DSpace/DSpace/compare/master...4Science:or2018-workshop) and reference these changes in examples.
 
 These code examples illustrate the addition of functionality for EPersons.  These changes are not yet merged.
