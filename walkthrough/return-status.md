@@ -248,7 +248,7 @@ In our example, the parameter named **parent** is required.  Since this paramete
 }
 ```
 ---
-In the **DSpaceApiExceptionControllerAdvice** class will be scanned for an appropriate exception handler for a MissingParameterException.
+The **DSpaceApiExceptionControllerAdvice** class will be scanned for an appropriate exception handler for a MissingParameterException.
 
 ### Method org.dspace.app.exception.DSpaceApiExceptionControllerAdvice.MissingParameterException()
 
@@ -268,7 +268,150 @@ protected void MissingParameterException(HttpServletRequest request, HttpServlet
 
 ```
 ---
-- Unauthorized action
-- Empty response object
+## Attempt to Delete a Workspace Item (Unauthenticated): DELETE /submission/workspaceitems/111
+
+This request will match the following controller:
+
+### Controller org.dspace.app.rest.RestResourceController
+```
+@RestController
+@RequestMapping("/api/{apiCategory}/{model}")
+@SuppressWarnings("rawtypes")
+public class RestResourceController implements InitializingBean {
+```
+
+Based on the path specified, the following method will be invoked.
+
+---
+### Method org.dspace.app.rest.RestResourceController.delete()
+
+Parameters
+- apiCategory = submission
+- model = workspaceitems
+- id = 111
+
+```
+@RequestMapping(method = RequestMethod.DELETE, value = REGEX_REQUESTMAPPING_IDENTIFIER_AS_DIGIT)
+public ResponseEntity<ResourceSupport> delete(HttpServletRequest request, @PathVariable String apiCategory,
+                                              @PathVariable String model, @PathVariable Integer id)
+    throws HttpRequestMethodNotSupportedException {
+    return deleteInternal(apiCategory, model, id);
+}
+```
+---
+### Method org.dspace.app.rest.RestResourceController.deleteInternal()
+```
+private <ID extends Serializable> ResponseEntity<ResourceSupport> deleteInternal(String apiCategory, String model,
+                                                                                 ID id) {
+    checkModelPluralForm(apiCategory, model);
+    DSpaceRestRepository<RestAddressableModel, ID> repository = utils.getResourceRepository(apiCategory, model);
+    repository.delete(id);
+    return ControllerUtils.toEmptyResponse(HttpStatus.NO_CONTENT);
+}
+```
+---
+### Method org.dspace.app.rest.utils.Utils.getResourceRepository()
+
+This method will return the appropriate Repository class.
+```
+public DSpaceRestRepository getResourceRepository(String apiCategory, String modelPlural) {
+    String model = makeSingular(modelPlural);
+    try {
+        return applicationContext.getBean(apiCategory + "." + model, DSpaceRestRepository.class);
+    } catch (NoSuchBeanDefinitionException e) {
+        throw new RepositoryNotFoundException(apiCategory, model);
+    }
+}
+```
+---
+### Class org.dspace.app.rest.repository.WorkspaceItemRestRepository
+```
+@Component(WorkspaceItemRest.CATEGORY + "." + WorkspaceItemRest.NAME)
+public class WorkspaceItemRestRepository extends DSpaceRestRepository<WorkspaceItemRest, Integer> {
+```
+---
+### Method org.dspace.app.rest.repository.WorkspaceItemRestRepository.delete()
+This method invokes the DSpace API to perform the delete operation.
+
+If the user is not authorized to perform this action, an **org.dspace.authorize.AuthorizeException** is thrown.
+```
+@Override
+protected void delete(Context context, Integer id) throws AuthorizeException {
+    WorkspaceItem witem = null;
+    try {
+        witem = wis.find(context, id);
+        wis.deleteAll(context, witem);
+    } catch (SQLException | IOException e) {
+        log.error(e.getMessage(), e);
+    }
+}
+```
+---
+The **DSpaceApiExceptionControllerAdvice** class will be scanned for an appropriate exception handler for an AuthorizeException.
+
+### Method org.dspace.app.exception.DSpaceApiExceptionControllerAdvice.handleAuthorizeException()
+
+Note that this method will return a status of **HttpServletResponse.SC_UNAUTHORIZED** if the user is not logged in.
+
+This method will return a status of **HttpServletResponse.SC_FORBIDDEN** if a user is logged in but not permitted to perform the operation.
+
+```
+@ExceptionHandler({AuthorizeException.class, RESTAuthorizationException.class})
+protected void handleAuthorizeException(HttpServletRequest request, HttpServletResponse response, Exception ex)
+    throws IOException {
+    if (restAuthenticationService.hasAuthenticationData(request)) {
+        sendErrorResponse(request, response, ex, ex.getMessage(), HttpServletResponse.SC_FORBIDDEN);
+    } else {
+        sendErrorResponse(request, response, ex, ex.getMessage(), HttpServletResponse.SC_UNAUTHORIZED);
+    }
+}
+```
+---
+## Attempt to Delete a Workspace Item (Authorized): DELETE /submission/workspaceitems/111
+
+Repeating the prior scenario, imagine that the user is authorized to perform the delete operation.
+
+This request will match the following controller:
+
+### Controller org.dspace.app.rest.RestResourceController
+```
+@RestController
+@RequestMapping("/api/{apiCategory}/{model}")
+@SuppressWarnings("rawtypes")
+public class RestResourceController implements InitializingBean {
+```
+
+Based on the path specified, the following method will be invoked.
+
+---
+### Method org.dspace.app.rest.RestResourceController.delete()
+
+Parameters
+- apiCategory = submission
+- model = workspaceitems
+- id = 111
+
+```
+@RequestMapping(method = RequestMethod.DELETE, value = REGEX_REQUESTMAPPING_IDENTIFIER_AS_DIGIT)
+public ResponseEntity<ResourceSupport> delete(HttpServletRequest request, @PathVariable String apiCategory,
+                                              @PathVariable String model, @PathVariable Integer id)
+    throws HttpRequestMethodNotSupportedException {
+    return deleteInternal(apiCategory, model, id);
+}
+```
+---
+### Method org.dspace.app.rest.RestResourceController.deleteInternal()
+```
+private <ID extends Serializable> ResponseEntity<ResourceSupport> deleteInternal(String apiCategory, String model,
+                                                                                 ID id) {
+    checkModelPluralForm(apiCategory, model);
+    DSpaceRestRepository<RestAddressableModel, ID> repository = utils.getResourceRepository(apiCategory, model);
+    repository.delete(id);
+```
+The following Spring Framework method will construct an empty response with a status of **HttpStatus.NO_CONTENT** or **204**.
+```
+    return ControllerUtils.toEmptyResponse(HttpStatus.NO_CONTENT);
+}
+```
 
 {% include nav.html %}
