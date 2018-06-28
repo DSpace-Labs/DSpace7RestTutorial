@@ -1,6 +1,47 @@
 {% include navmenu.html %}
 
 ## Search Communities
+
+https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L820-L837
+```
+@RequestMapping(method = RequestMethod.GET, value = "/search")
+public ResourceSupport listSearchMethods(@PathVariable String apiCategory, @PathVariable String model) {
+    ResourceSupport root = new ResourceSupport();
+    DSpaceRestRepository repository = utils.getResourceRepository(apiCategory, model);
+
+    List<String> searchMethods = repositoryUtils.listSearchMethods(repository);
+
+    if (CollectionUtils.isEmpty(searchMethods)) {
+        throw new RepositorySearchNotFoundException(model);
+    }
+
+    for (String name : searchMethods) {
+        Link link = linkTo(this.getClass(), apiCategory, model).slash("search").slash(name).withRel(name);
+        root.add(link);
+    }
+    return root;
+}
+
+
+```
+https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L81-L94
+```
+// TODO: Add methods in dspace api to support pagination of top level
+// communities
+@SearchRestMethod(name = "top")
+public Page<CommunityRest> findAllTop(Pageable pageable) {
+    List<Community> topCommunities = null;
+    try {
+        topCommunities = cs.findAllTop(obtainContext());
+    } catch (SQLException e) {
+        throw new RuntimeException(e.getMessage(), e);
+    }
+    Page<CommunityRest> page = utils.getPage(topCommunities, pageable).map(converter);
+    return page;
+}
+
+```
+
 ---
 ### Unit Test
 ---
