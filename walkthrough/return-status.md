@@ -70,7 +70,9 @@ public class DSpaceApiExceptionControllerAdvice extends ResponseEntityExceptionH
 Since there is no handle in place for RepositoryNotFoundException or RuntimeException,
 default exception handling within Spring is invoked and a **404** Status Code (**SC_NOT_FOUND**) is returned.
 
-(TODO: confirm that there is no other DSpace code triggering the 404)
+<div class="todo">
+TODO: confirm that there is no other DSpace code triggering the 404.
+</todo>
 ---
 
 ## Missing Required Parameter: GET /core/communities/search/subCommunities
