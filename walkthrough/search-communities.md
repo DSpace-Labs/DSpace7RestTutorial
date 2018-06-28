@@ -1,9 +1,10 @@
 {% include navmenu.html %}
 
-## Search Communities
+## Search Communities: /core/communities/search/top
 This request will match the following controller:
 
-### Controller org.dspace.app.rest.RestResourceController
+### Controller org.dspace.app.rest.RestResourceController [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L85-L88")
+
 ```
 @RestController
 @RequestMapping("/api/{apiCategory}/{model}")
