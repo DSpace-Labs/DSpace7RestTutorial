@@ -41,8 +41,8 @@ div.todo {
   margin: 0 20px;
 }
 
-.main-content h2 {
-  text-align: center;
-  color: navy;
+.main-content h2, .main-content h1 {
   margin-above: 15px;
+  margin-below: 10px;
+  border-bottom: 4px solid navy;
 }
