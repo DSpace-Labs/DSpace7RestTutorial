@@ -31,3 +31,4 @@ nav:
   - {name: "Get Communities Test Methods", path: "/walkthrough/get-communities-unit-test"}
   - {name: "Get Top Communities (Search)", path: "/walkthrough/search-communities"}
   - {name: "EPerson Endpoint (Workshop Examples)", path: "/walkthrough/eperson"}
+  - {name: "Next Steps", path: "/walkthrough/next-steps"}
