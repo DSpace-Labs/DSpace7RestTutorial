@@ -1,9 +1,5 @@
 {% include navmenu.html %}
 
-<div class="todo">
-**This page is under construction**
-</div>
-
 ## Coding EPerson Endpoints (Code Samples from the DSpace 7 REST API OR2018 Workshop)
 
 See code in [or2018-workshop commits](https://github.com/DSpace/DSpace/compare/master...4Science:or2018-workshop) and reference these changes in examples.
