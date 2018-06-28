@@ -271,8 +271,7 @@ public EPersonRest findByEmail(@Parameter(value = "email", required = true) Stri
     return converter.fromModel(eperson);
 }
 ```
-### [Delete IT](https://github.com/DSpace/DSpace/commit/d698d3df859b9d75e7fc43f302569f97ebe18e8a)
-dspace-spring-rest/src/test/java/org/dspace/app/rest/EPersonRestRepositoryIT.java
+### Create deletion test methods in org.dspace.app.rest.repository.EPersonRestRepository [Commit&rarr;](https://github.com/DSpace/DSpace/commit/d698d3df859b9d75e7fc43f302569f97ebe18e8a)
 ```
 @Test
 public void deleteOne() throws Exception {
@@ -374,8 +373,7 @@ public void deleteViolatingConstraints() throws Exception {
             .andExpect(status().isOk());
 }
 ```
-### [Delete Impl](https://github.com/DSpace/DSpace/commit/d7aeff721dbadc604cad7a3be5d96986dfd3f5f7)
-dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/EPersonRestRepository.java
+### Implement delete methods in org.dspace.app.rest.repository.EPersonRestRepository [Commit&rarr;](https://github.com/DSpace/DSpace/commit/d7aeff721dbadc604cad7a3be5d96986dfd3f5f7)
 ```
 @Override
 protected void delete(Context context, UUID id) throws AuthorizeException, RepositoryMethodNotImplementedException {
