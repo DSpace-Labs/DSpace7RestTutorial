@@ -1,6 +1,9 @@
 {% include navmenu.html %}
 
 ## EPerson Functionality
+
+**This page is under construction**
+
 ---
 See code in [or2018-workshop commits](https://github.com/DSpace/DSpace/compare/master...4Science:or2018-workshop) and reference these changes in examples.
 
