@@ -72,7 +72,7 @@ default exception handling within Spring is invoked and a **404** Status Code (*
 
 <div class="todo">
 TODO: confirm that there is no other DSpace code triggering the 404.
-</todo>
+</div>
 ---
 
 ## Missing Required Parameter: GET /core/communities/search/subCommunities
