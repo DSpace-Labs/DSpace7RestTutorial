@@ -284,7 +284,7 @@ public class RestResourceController implements InitializingBean {
 Based on the path specified, the following method will be invoked.
 
 
-### Method org.dspace.app.rest.RestResourceController.delete() [Code&rarr;]() https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L895-L900)
+### Method org.dspace.app.rest.RestResourceController.delete() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L895-L900)
 
 Parameters
 - apiCategory = submission
