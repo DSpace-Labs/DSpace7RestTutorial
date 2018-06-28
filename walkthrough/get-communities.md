@@ -25,12 +25,11 @@ Note, any controller methods defined within this class will reference a path rel
 - After the match is made, portions of the URL path will be assigned to the following variables
   - apiCategory
   - model
+
 ```
 @SuppressWarnings("rawtypes")
 public class RestResourceController implements InitializingBean {
 ```
-
-
 
 ### Find the appropriate method to call
 

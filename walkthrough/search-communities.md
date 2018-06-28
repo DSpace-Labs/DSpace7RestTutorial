@@ -1,30 +1,101 @@
 {% include navmenu.html %}
 
 ## Search Communities
+This request will match the following controller:
 
-https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L820-L837
+### Controller org.dspace.app.rest.RestResourceController
 ```
-@RequestMapping(method = RequestMethod.GET, value = "/search")
-public ResourceSupport listSearchMethods(@PathVariable String apiCategory, @PathVariable String model) {
-    ResourceSupport root = new ResourceSupport();
+@RestController
+@RequestMapping("/api/{apiCategory}/{model}")
+@SuppressWarnings("rawtypes")
+public class RestResourceController implements InitializingBean {
+```
+
+Based on the path specified, the following method will be invoked.
+
+
+### Method org.dspace.app.rest.RestResourceController.executeSearchMethods() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/RestResourceController.java#L838-L862)
+Parameters
+- apiCategory = core
+- model = communities
+- searchMethodName = top
+
+```
+@RequestMapping(method = RequestMethod.GET, value = "/search/{searchMethodName}")
+@SuppressWarnings("unchecked")
+public <T extends RestAddressableModel> ResourceSupport executeSearchMethods(@PathVariable String apiCategory,
+                                                                             @PathVariable String model,
+                                                                             @PathVariable String searchMethodName,
+                                                                             Pageable pageable, Sort sort,
+                                                                             PagedResourcesAssembler assembler,
+                                                                             @RequestParam MultiValueMap<String,
+                                                                                 Object> parameters)
+    throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+
+    Link link = linkTo(this.getClass(), apiCategory, model).slash("search").slash(searchMethodName).withSelfRel();
     DSpaceRestRepository repository = utils.getResourceRepository(apiCategory, model);
-
-    List<String> searchMethods = repositoryUtils.listSearchMethods(repository);
-
-    if (CollectionUtils.isEmpty(searchMethods)) {
-        throw new RepositorySearchNotFoundException(model);
-    }
-
-    for (String name : searchMethods) {
-        Link link = linkTo(this.getClass(), apiCategory, model).slash("search").slash(name).withRel(name);
-        root.add(link);
-    }
-    return root;
-}
-
-
+    boolean returnPage = false;
+    Object searchResult = null;
 ```
-https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L81-L94
+The following method will locate the appropriate search method by calling org.dspace.rest.utils.Utils.getSearchMethod()
+```
+    Method searchMethod = repositoryUtils.getSearchMethod(searchMethodName, repository);
+
+    if (searchMethod == null) {
+        if (repositoryUtils.haveSearchMethods(repository)) {
+            throw new RepositorySearchMethodNotFoundException(model, searchMethodName);
+        } else {
+            throw new RepositorySearchNotFoundException(model);
+        }
+    }
+```
+Once the appropriate search method has been found, **org.dspace.app.rest.utils.Utils.executeQueryMethod()** will be invoked.
+```
+    searchResult = repositoryUtils
+        .executeQueryMethod(repository, parameters, searchMethod, pageable, sort, assembler);
+
+    returnPage = searchMethod.getReturnType().isAssignableFrom(Page.class);
+    ResourceSupport result = null;
+    if (returnPage) {
+        Page<DSpaceResource<T>> resources = ((Page<T>) searchResult).map(repository::wrapResource);
+        resources.forEach(linkService::addLinks);
+        result = assembler.toResource(resources, link);
+    } else {
+        DSpaceResource<T> dsResource = repository.wrapResource((T) searchResult);
+        linkService.addLinks(dsResource);
+        result = dsResource;
+    }
+    return result;
+}
+```
+
+### Method org.dspace.rest.utils.RestRepositoryUtils.getSearchMethod() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/utils/RestRepositoryUtils.java#L97-L113)
+```
+    public Method getSearchMethod(String searchMethodName, DSpaceRestRepository repository) {
+        Method searchMethod = null;
+        for (Method method : repository.getClass().getMethods()) {
+```
+This method will search the code for the Annotation **org.dspace.app.rest.SearchRestMethod** and then compare the name of the method with the searchMethodName.
+```
+            SearchRestMethod ann = method.getAnnotation(SearchRestMethod.class);
+            if (ann != null) {
+                String name = ann.name();
+                if (name.isEmpty()) {
+                    name = method.getName();
+                }
+                if (StringUtils.equals(name, searchMethodName)) {
+                    searchMethod = method;
+                    break;
+                }
+            }
+        }
+        return searchMethod;
+    }
+```
+
+The following method contains the matching **@SearchRestMethod** annotation.
+
+### Method org.dspace.app.rest.repository.CommunityRepository.findAllTop() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/CommunityRestRepository.java#L81-L94)
 ```
 // TODO: Add methods in dspace api to support pagination of top level
 // communities
@@ -42,10 +113,9 @@ public Page<CommunityRest> findAllTop(Pageable pageable) {
 
 ```
 
+## Unit Test for Find All Top Communities
 
-### Unit Test
-
-https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/test/java/org/dspace/app/rest/CommunityRestRepositoryIT.java#L210-L256
+### Test Method org.dspace.app.rest.CommunityRestRepositoryIT.fandAllSearchTop() [Code&rarr;](https://github.com/DSpace/DSpace/blob/rest-tutorial/dspace-spring-rest/src/test/java/org/dspace/app/rest/CommunityRestRepositoryIT.java#L210-L256)
 ```
 @Test
  public void findAllSearchTop() throws Exception {
