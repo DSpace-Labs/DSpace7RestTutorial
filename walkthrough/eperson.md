@@ -1,42 +1,21 @@
 {% include navmenu.html %}
 
-## EPerson Functionality
 <div class="todo">
 **This page is under construction**
 </div>
 
+## Coding EPerson Endpoints (Code Samples from the DSpace 7 REST API OR2018 Workshop)
+
 See code in [or2018-workshop commits](https://github.com/DSpace/DSpace/compare/master...4Science:or2018-workshop) and reference these changes in examples.
 
-These code examples illustrate the addition of functionality for EPersons.  These changes are not yet merged.
+These code examples illustrate the addition of functionality for EPersons.  
 
-### [Auth test](https://github.com/4Science/DSpace/commit/07b4926a762d050a3d5c8eaa2e612b820fd36bf1)
-dspace-spring-rest/src/test/java/org/dspace/app/rest/EPersonRestRepositoryIT.java
+<div class="todo">
+At the time this page was created, these changes were not yet merged into the DSpace Code base.
+</div>
+
+### Create Authorization Tests in org.dspace.app.rest.EPersonRestRepositoryIT.java [Commit&rarr;](https://github.com/4Science/DSpace/commit/07b4926a762d050a3d5c8eaa2e612b820fd36bf1)
 ```
-public class EPersonRestRepositoryIT extends AbstractControllerIntegrationTest {
-
-    @Test
-    public void findAllTest() throws Exception {
-        context.turnOffAuthorisationSystem();
-
-        EPerson newUser = EPersonBuilder.createEPerson(context)
-                                        .withNameInMetadata("John", "Doe")
-                                        .withEmail("Johndoe@gmail.com")
-                                        .build();
-
-        String authToken = getAuthToken(admin.getEmail(), password);
-        getClient(authToken).perform(get("/api/eperson/eperson"))
-                   .andExpect(status().isOk())
-                   .andExpect(content().contentType(contentType))
-                   .andExpect(jsonPath("$._embedded.epersons", Matchers.containsInAnyOrder(
-                       EPersonMatcher.matchEPersonEntry(newUser),
-                       EPersonMatcher.matchDefaultTestEPerson(),
-                       EPersonMatcher.matchDefaultTestEPerson()
-                   )))
-                   .andExpect(jsonPath("$.page.size", is(20)))
-                   .andExpect(jsonPath("$.page.totalElements", is(3)))
-        ;
-    }
-
     @Test
     public void findAllUnauthorizedTest() throws Exception {
         context.turnOffAuthorisationSystem();
@@ -45,7 +24,10 @@ public class EPersonRestRepositoryIT extends AbstractControllerIntegrationTest {
                                         .withNameInMetadata("John", "Doe")
                                         .withEmail("Johndoe@gmail.com")
                                         .build();
-
+```
+In the following statement, and unauthenticated session is attempting to retrieve a user record.
+This action will be unauthorized.
+```
         getClient().perform(get("/api/eperson/eperson"))
                    .andExpect(status().isUnauthorized());
     }
@@ -60,141 +42,16 @@ public class EPersonRestRepositoryIT extends AbstractControllerIntegrationTest {
                                         .build();
 
         String authToken = getAuthToken(eperson.getEmail(), password);
+```
+In the following statement, and authenticated session is attempting to retrieve a user record.
+This action will be forbidden to a non-admin user.
+```
         getClient(authToken).perform(get("/api/eperson/eperson"))
                             .andExpect(status().isForbidden());
     }
 
-    @Test
-    public void findAllPaginationTest() throws Exception {
-        context.turnOffAuthorisationSystem();
-
-        EPerson ePerson = EPersonBuilder.createEPerson(context)
-                                        .withNameInMetadata("John", "Doe")
-                                        .withEmail("Johndoe@gmail.com")
-                                        .build();
-
-        String authToken = getAuthToken(admin.getEmail(), password);
-        // using size = 2 the first page will contains our test user and admin
-        getClient(authToken).perform(get("/api/eperson/eperson")
-                                .param("size", "2"))
-                   .andExpect(status().isOk())
-                   .andExpect(content().contentType(contentType))
-                   .andExpect(jsonPath("$._embedded.epersons", Matchers.containsInAnyOrder(
-                           EPersonMatcher.matchDefaultTestEPerson(),
-                           EPersonMatcher.matchDefaultTestEPerson()
-                   )))
-                   .andExpect(jsonPath("$._embedded.epersons", Matchers.not(
-                       Matchers.contains(
-                           EPersonMatcher.matchEPersonEntry(ePerson)
-                       )
-                   )))
-                   .andExpect(jsonPath("$.page.size", is(2)))
-                   .andExpect(jsonPath("$.page.totalElements", is(3)))
-        ;
-
-        // using size = 2 the first page will contains our test user and admin
-        getClient(authToken).perform(get("/api/eperson/eperson")
-                                .param("size", "2")
-                                .param("page", "1"))
-                   .andExpect(status().isOk())
-                   .andExpect(content().contentType(contentType))
-                   .andExpect(jsonPath("$._embedded.epersons", Matchers.contains(
-                       EPersonMatcher.matchEPersonEntry(ePerson)
-                   )))
-                   .andExpect(jsonPath("$.page.size", is(2)))
-                   .andExpect(jsonPath("$.page.totalElements", is(3)))
-        ;
-    }
-
-
-    @Test
-    public void findOneTest() throws Exception {
-        context.turnOffAuthorisationSystem();
-
-        EPerson ePerson = EPersonBuilder.createEPerson(context)
-                                        .withNameInMetadata("John", "Doe")
-                                        .withEmail("Johndoe@gmail.com")
-                                        .build();
-
-        EPerson ePerson2 = EPersonBuilder.createEPerson(context)
-                                         .withNameInMetadata("Jane", "Smith")
-                                         .withEmail("janesmith@gmail.com")
-                                         .build();
-
-        String authToken = getAuthToken(admin.getEmail(), password);
-        getClient(authToken).perform(get("/api/eperson/epersons/" + ePerson2.getID()))
-                   .andExpect(status().isOk())
-                   .andExpect(content().contentType(contentType))
-                   .andExpect(jsonPath("$", is(
-                       EPersonMatcher.matchEPersonEntry(ePerson2)
-                   )))
-                   .andExpect(jsonPath("$", Matchers.not(
-                       is(
-                           EPersonMatcher.matchEPersonEntry(ePerson)
-                       )
-                   )));
-
-    }
-
-    @Test
-    public void findOneRelsTest() throws Exception {
-        context.turnOffAuthorisationSystem();
-
-        EPerson ePerson = EPersonBuilder.createEPerson(context)
-                                        .withNameInMetadata("John", "Doe")
-                                        .withEmail("Johndoe@gmail.com")
-                                        .build();
-
-        EPerson ePerson2 = EPersonBuilder.createEPerson(context)
-                                         .withNameInMetadata("Jane", "Smith")
-                                         .withEmail("janesmith@gmail.com")
-                                         .build();
-
-        String authToken = getAuthToken(admin.getEmail(), password);
-        getClient(authToken).perform(get("/api/eperson/epersons/" + ePerson2.getID()))
-                   .andExpect(status().isOk())
-                   .andExpect(content().contentType(contentType))
-                   .andExpect(jsonPath("$", is(
-                       EPersonMatcher.matchEPersonEntry(ePerson2)
-                   )))
-                   .andExpect(jsonPath("$", Matchers.not(
-                       is(
-                           EPersonMatcher.matchEPersonEntry(ePerson)
-                       )
-                   )))
-                   .andExpect(jsonPath("$._links.self.href",
-                                       Matchers.containsString("/api/eperson/epersons/" + ePerson2.getID())));
-    }
-
-
-    @Test
-    public void findOneTestWrongUUID() throws Exception {
-        context.turnOffAuthorisationSystem();
-
-        EPerson ePerson = EPersonBuilder.createEPerson(context)
-                                        .withNameInMetadata("John", "Doe")
-                                        .withEmail("Johndoe@gmail.com")
-                                        .build();
-
-        EPerson ePerson2 = EPersonBuilder.createEPerson(context)
-                                         .withNameInMetadata("Jane", "Smith")
-                                         .withEmail("janesmith@gmail.com")
-                                         .build();
-
-        String authToken = getAuthToken(admin.getEmail(), password);
-        getClient(authToken).perform(get("/api/eperson/epersons/" + UUID.randomUUID()))
-                   .andExpect(status().isNotFound());
-
-    }
-}
 ```
-### [Auth fix](https://github.com/DSpace/DSpace/commit/1d7efbd89d6e18605101350362d1a8baa9bec9c6)
-dspace-spring-rest/src/main/java/org/dspace/app/rest/repository/EPersonRestRepository.java
-```
-@Autowired
-AuthorizeService authorizeService;
-```
-
+### Add Authorization Check to org.dspace.app.rest.repository.EPersonRestRepository.findAll() [Commit&rarr;](https://github.com/DSpace/DSpace/commit/1d7efbd89d6e18605101350362d1a8baa9bec9c6)
 ```
 @Override
 public Page<EPersonRest> findAll(Context context, Pageable pageable) {
