@@ -119,6 +119,7 @@ return status values.  See **Class org.dspace.app.rest.exception.DSpaceApiExcept
 Assemble the page of resources into "PagedResources" a HATEOAS compliant manner.
 - "Creates a new PagedResources by converting the given Page into a PagedResources.PageMetadata instance and wrapping the contained elements into Resource instances. Will add pagination links based on the given the self link."
   - from [Spring Framework JavaDoc](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/web/PagedResourcesAssembler.html#toResource-org.springframework.data.domain.Page-org.springframework.hateoas.Link-)
+
 ```
   PagedResources<DSpaceResource<T>> result = assembler.toResource(resources, link);
 ```
