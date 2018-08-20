@@ -9,7 +9,7 @@ Unit and integration tests can be invoked when running a maven build on your cod
 
 A single integration test can be run in the following manner.
 
-`mvn test -Dtest=org.dspace.app.rest.AuthenticationRestControllerIT -Dmaven.test.skip=false -DskipITs=false`
+`mvn test -Dtest=org.dspace.app.rest.AuthenticationRestControllerIT -Dmaven.test.skip=false -DskipITs=false -DfailIfNoTests=false`
 
 Unit and integration tests that require database functionality take place using a test h2 database. The h2 database is an in memory SQL database used for testing SQL functionality.  The database and asset store used by the automated testing framework do not persist after tests are completed.
 
