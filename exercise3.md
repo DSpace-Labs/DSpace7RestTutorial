@@ -22,12 +22,12 @@ At the bottom of the return object, you will see a count of the number of object
 
 ## 3. Items
 
-### 3a. Use Postman to list all items
+### 3a. Use Postman to list all collections
 
-`api/core/items`
+`api/core/collections`
 
-- How many items exist?
-- How many items were returned?
+- How many collections exist?
+- How many collections were returned?
 
 ### 3b. Add a __size__ parameter in postman to change the page size
 

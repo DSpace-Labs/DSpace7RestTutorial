@@ -56,17 +56,43 @@ Note how these counts differ from your prior results.
 
 `api/discover/search/objects`
 
-### 3b. Search for "research" and note the result count
+### 3b. Try again to access the items endpoint
 
-`api/discover/search/objects?query=research`
+In exercise 1 you have verified that access to the items endpoint was forbidden to unauthorized user, now that you are loggedin as administrator what do you see?
+How many items are listed? how this number compare with the items exposed over the browse endpoints?
 
-## 4. Next steps
+`api/core/items`
+
+### 4. EPersons and Groups
+Explore other endpoints restricted to administrators
+
+#### 4a. View all EPersons
+Use the HAL Browser to view all people (epersons) known to the repository.
+
+`api/eperson/epersons`
+
+#### 4b. View a specific EPerson
+Use the HAL Browser to view the data for a specific user (eperson).
+
+`api/eperson/epersons/[uuid]`
+
+#### 4c. View all Groups
+Use the HAL Browser to view all user groups known to the repository.
+
+`api/eperson/groups`
+
+#### 4d. View a specific Group
+Use the HAL Browser to view the data for a specific user group.
+
+`api/eperson/groups/[uuid]`
+
+## 5. Next steps
 
 The HAL browser does not yet pass authentication status to requests that modify data, so this exercise will stop here.
 
 As the DSpace REST code evolves, more Create/Update/Delete functionality will become available through the HAL browser.
 
-Note: the exclamation point in the HAL Browser is the mechanism that will be used to invoke POST/DELETE/PUT operations.
+Note: the exclamation point in the HAL Browser is the mechanism that will be used to invoke POST/DELETE/PUT operations. The question mark is used when the link declare parameter via templating, the ALPS support will add more granular control over that. 
 
 
 {% include credentials.html %}

@@ -7,7 +7,7 @@ See code in [or2018-workshop commits](https://github.com/DSpace/DSpace/compare/m
 These code examples illustrate the addition of functionality for EPersons.  
 
 <div class="todo">
-At the time this page was created, these changes were not yet merged into the DSpace Code base.
+At the time this page was created, these changes were not yet merged into the DSpace Code base. The actual code include this functionality, the code has been refactored overtime so it slightly differ from what here lsited 
 </div>
 
 ### Create Authorization Tests in org.dspace.app.rest.EPersonRestRepositoryIT.java [Commit&rarr;](https://github.com/4Science/DSpace/commit/07b4926a762d050a3d5c8eaa2e612b820fd36bf1)

@@ -11,8 +11,8 @@ show_downloads: false
 # Custom additions for the tutorial navigation bar
 # --------------------------------
 
-restService: https://dspace7.4science.it/terry
-restCredentials: dspacedemoadmin@mailinator.com / dspace
+restService: https://dspace7.4science.cloud/dspace-spring-rest
+restCredentials: dspacedemo+admin@gmail.com / dspace
 exerciseUrl: http://bit.ly/dspace7-rest
 
 # nav_style: menu or button
@@ -24,6 +24,7 @@ nav:
   - {name: "Exercise 2 - Authenticating with the HAL Browser", path: "/exercise2"}
   - {name: "Exercise 3 - Browsing the Repository with Postman", path: "/exercise3"}
   - {name: "Exercise 4 - Authenticating with Postman", path: "/exercise4"}
+  - {name: "Exercise 5 - Interact with the submission", path: "/exercise5"}
   - {name: "Tips for Using Postman", path: "/usingPostman"}
   - {name: "Code Walkthrough", path: "/walkthrough/intro"}
   - {name: "Get Communities", path: "/walkthrough/get-communities"}

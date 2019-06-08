@@ -35,7 +35,7 @@ POST `api/authn/login`
 
 `api/authn/status`
 
-In the return section, note that authentication is false.
+In the return section, note that authentication is true.
 
 ![Screenshot - get authn status](screenshots/post4.png)
 
@@ -77,7 +77,11 @@ Note the id of the object that is created.
 
 GET `api/submission/workspaceitems/[id]`
 
-### 3c. Retrieve the workspace item you created
+Note the error section where missing mandatory metadata and sections are listed
+ 
+![Screenshot - missing mandatory information](screenshots/workspaceitem-errors.png)
+
+### 3c. Delete the workspace item you created
 
 DELETE `api/submission/workspaceitems/[id]`
 
