@@ -20,7 +20,7 @@ At the bottom of the return object, you will see a count of the number of object
 
 `api/core/communities/search/top`
 
-## 3. Items
+## 3. Collections
 
 ### 3a. Use Postman to list all collections
 
