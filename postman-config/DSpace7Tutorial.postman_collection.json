@@ -645,7 +645,7 @@
 					"response": []
 				},
 				{
-					"name": "Get WorkspaceItem",
+					"name": "Add title to WorkspaceItem",
 					"request": {
 						"method": "PATCH",
 						"header": [
@@ -1177,6 +1177,377 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Create a ResourcePolicy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"2010-01-15\",\n    \"endDate\": \"2019-12-15\",\n    \"description\": \"My Description\",\n    \"name\" : \"My Name\",\n    \"action\" : \"READ\"\n}"
+						},
+						"url": {
+							"raw": "{{dspaceresturl}}/api/authz/resourcepolicies?resource=8b632938-77c2-487c-81f0-e804f63e68e6&eperson=cd824a61-95be-4e16-bccd-51fea26707d0",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"authz",
+								"resourcepolicies"
+							],
+							"query": [
+								{
+									"key": "resource",
+									"value": "8b632938-77c2-487c-81f0-e804f63e68e6"
+								},
+								{
+									"key": "eperson",
+									"value": "cd824a61-95be-4e16-bccd-51fea26707d0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a ResourcePolicy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{dspaceresturl}}/api/authz/resourcepolicies/:ID",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"authz",
+								"resourcepolicies",
+								":ID"
+							],
+							"variable": [
+								{
+									"key": "ID",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ResourcePolicies by EPerson",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{dspaceresturl}}/api/authz/resourcepolicies/search/eperson?uuid=914955b1-cf2e-4884-8af7-a166aa24cf73",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"authz",
+								"resourcepolicies",
+								"search",
+								"eperson"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "914955b1-cf2e-4884-8af7-a166aa24cf73"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ResourcePolicies by Group",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{dspaceresturl}}/api/authz/resourcepolicies/search/group?uuid=f2c7eb75-aec0-4604-ab7f-6676723818ad",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"authz",
+								"resourcepolicies",
+								"search",
+								"group"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "f2c7eb75-aec0-4604-ab7f-6676723818ad"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ResourcePolicies by Resource",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{dspaceresturl}}/api/authz/resourcepolicies/search/resource?uuid=b7bf809e-b8ea-41bf-b16a-38d78785f557",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"authz",
+								"resourcepolicies",
+								"search",
+								"resource"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "b7bf809e-b8ea-41bf-b16a-38d78785f557"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ResourcePolicies by Resource and Action",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{dspaceresturl}}/api/authz/resourcepolicies/search/resource?uuid=343d3263-2733-4367-9dc4-216a01b4a461&action=READ",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"authz",
+								"resourcepolicies",
+								"search",
+								"resource"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "343d3263-2733-4367-9dc4-216a01b4a461"
+								},
+								{
+									"key": "action",
+									"value": "READ"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a ResourcePolicy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{dspaceresturl}}/api/authz/resourcepolicies/:ID",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"authz",
+								"resourcepolicies",
+								":ID"
+							],
+							"variable": [
+								{
+									"key": "ID",
+									"value": "10481"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update ResourcePolicy",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\"op\":\"replace\",\"path\":\"/description\", \"value\": \"New Description\"},\n  {\"op\":\"replace\",\"path\":\"/name\", \"value\": \"New Name\"},\n  {\"op\":\"add\",\"path\":\"/startDate\", \"value\": \"2010-01-01\"}\n]"
+						},
+						"url": {
+							"raw": "{{dspaceresturl}}/api/authz/resourcepolicies/:ID",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"authz",
+								"resourcepolicies",
+								":ID"
+							],
+							"variable": [
+								{
+									"key": "ID",
+									"value": "10480"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "API Entry point",
