@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9f65ccde-5107-4438-a802-0a0c6aafef0c",
+		"_postman_id": "3de4a6dd-ae24-43f8-a1e1-250b1b65b294",
 		"name": "DSpace 7 Tutorial",
 		"description": "Collection of REST API call for the DSpace 7 Tutorial",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -10,11 +10,8 @@
 			"name": "Authentication",
 			"item": [
 				{
-					"name": "Login (Administrator)",
+					"name": "Login",
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -29,56 +26,12 @@
 							"urlencoded": [
 								{
 									"key": "user",
-									"value": "dspacedemo+admin@gmail.com",
+									"value": "{{username}}",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "dspace",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{dspaceresturl}}/api/authn/login",
-							"host": [
-								"{{dspaceresturl}}"
-							],
-							"path": [
-								"api",
-								"authn",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login (Submitter)",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/x-www-form-urlencoded"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "user",
-									"value": "dspacedemo+submit@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "dspace",
+									"value": "{{password}}",
 									"type": "text"
 								}
 							]
@@ -109,6 +62,10 @@
 								"value": "application/x-www-form-urlencoded"
 							}
 						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
 						"url": {
 							"raw": "{{dspaceresturl}}/api/authn/login",
 							"host": [
@@ -162,27 +119,11 @@
 					"response": []
 				},
 				{
-					"name": "Status with token",
+					"name": "Status (without token)",
 					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{dspaceresturl}}/api/authn/status",
-							"host": [
-								"{{dspaceresturl}}"
-							],
-							"path": [
-								"api",
-								"authn",
-								"status"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Authentication Status",
-					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -478,98 +419,12 @@
 					"response": []
 				},
 				{
-					"name": "Create WorkspaceItem from PDF force collection",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/home/openmind/git/DSpace7/dspace-spring-rest/src/test/resources/org/dspace/app/rest/simple-article.pdf"
-								},
-								{
-									"key": "extraf",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "{{dspaceresturl}}/api/submission/workspaceitems?collection=51715dd3-5590-49f2-b227-6a663c849921",
-							"host": [
-								"{{dspaceresturl}}"
-							],
-							"path": [
-								"api",
-								"submission",
-								"workspaceitems"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "51715dd3-5590-49f2-b227-6a663c849921"
-								}
-							]
-						}
+					"name": "Get WorkspaceItem",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
 					},
-					"response": []
-				},
-				{
-					"name": "Upload PDF",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"type": "file",
-									"src": []
-								},
-								{
-									"key": "extraField",
-									"value": "/home/rest7tutorial/sample.pdf",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{dspaceresturl}}/api/submission/workspaceitems/:ID",
-							"host": [
-								"{{dspaceresturl}}"
-							],
-							"path": [
-								"api",
-								"submission",
-								"workspaceitems",
-								":ID"
-							],
-							"variable": [
-								{
-									"key": "ID",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create WorkspaceItem from BibTeX force collection",
-					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -579,49 +434,8 @@
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/home/openmind/git/DSpace7/dspace-spring-rest/src/test/resources/org/dspace/app/rest/bibtex-test.bib"
-								},
-								{
-									"key": "extraf",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "{{dspaceresturl}}/api/submission/workspaceitems?collection=51715dd3-5590-49f2-b227-6a663c849921",
-							"host": [
-								"{{dspaceresturl}}"
-							],
-							"path": [
-								"api",
-								"submission",
-								"workspaceitems"
-							],
-							"query": [
-								{
-									"key": "collection",
-									"value": "51715dd3-5590-49f2-b227-6a663c849921"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete a WorkspaceItem",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
+							"mode": "raw",
+							"raw": "{}"
 						},
 						"url": {
 							"raw": "{{dspaceresturl}}/api/submission/workspaceitems/:ID",
@@ -680,6 +494,47 @@
 					"response": []
 				},
 				{
+					"name": "Upload PDF",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "extraField",
+									"value": "/home/rest7tutorial/sample.pdf",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dspaceresturl}}/api/submission/workspaceitems/:ID",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"submission",
+								"workspaceitems",
+								":ID"
+							],
+							"variable": [
+								{
+									"key": "ID",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete file",
 					"request": {
 						"method": "PATCH",
@@ -691,21 +546,102 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n\t{\"op\":\"remove\",\"path\":\"/sections/uploads/files/0\"}\n]"
+							"raw": "[\n\t{\"op\":\"remove\",\"path\":\"/sections/upload/files/0\"}\n]"
 						},
 						"url": {
-							"raw": "http://localhost:8080/dspace-spring-rest/api/submission/workspaceitems/197",
-							"protocol": "http",
+							"raw": "{{dspaceresturl}}/api/submission/workspaceitems/:ID",
 							"host": [
-								"localhost"
+								"{{dspaceresturl}}"
 							],
-							"port": "8080",
 							"path": [
-								"dspace-spring-rest",
 								"api",
 								"submission",
 								"workspaceitems",
-								"197"
+								":ID"
+							],
+							"variable": [
+								{
+									"key": "ID",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create WorkspaceItem from BibTeX force collection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/openmind/git/DSpace7/dspace-server-webapp/src/test/resources/org/dspace/app/rest/bibtex-test.bib"
+								},
+								{
+									"key": "extraf",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dspaceresturl}}/api/submission/workspaceitems?collection=51715dd3-5590-49f2-b227-6a663c849921",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"submission",
+								"workspaceitems"
+							],
+							"query": [
+								{
+									"key": "collection",
+									"value": "51715dd3-5590-49f2-b227-6a663c849921"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a WorkspaceItem",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{dspaceresturl}}/api/submission/workspaceitems/:ID",
+							"host": [
+								"{{dspaceresturl}}"
+							],
+							"path": [
+								"api",
+								"submission",
+								"workspaceitems",
+								":ID"
+							],
+							"variable": [
+								{
+									"key": "ID",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -997,7 +933,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
 								"exec": [
 									""
 								],
@@ -1187,7 +1122,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
 								"exec": [
 									""
 								],
@@ -1239,7 +1173,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
 								"exec": [
 									""
 								],
@@ -1284,7 +1217,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
 								"exec": [
 									""
 								],
@@ -1330,7 +1262,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
 								"exec": [
 									""
 								],
@@ -1376,7 +1307,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
 								"exec": [
 									""
 								],
@@ -1422,7 +1352,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
 								"exec": [
 									""
 								],
@@ -1472,7 +1401,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4246f56f-d5d0-4d5a-882b-c81744ff07e9",
 								"exec": [
 									""
 								],
@@ -1546,8 +1474,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "API Entry point",
@@ -1591,7 +1518,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "{{auth_token}}",
+				"value": "{{token}}",
 				"type": "string"
 			}
 		]
@@ -1600,32 +1527,61 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "1696004a-d0c3-4577-9319-3c3d07db38cb",
 				"type": "text/javascript",
 				"exec": [
-					"const loginRequest = {",
-					"  url: pm.environment.get('dspaceresturl') + \"/api/authn/login\",",
+					"var user = pm.environment.get(\"username\");",
+					"var pwd = pm.environment.get(\"password\");",
+					"var protocol = pm.environment.get(\"protocol\");",
+					"var resthost = pm.environment.get(\"rest-host\");",
+					"var context = pm.environment.get(\"context\");",
+					"var url = protocol + \"://\" + resthost + \"/\" + context + \"/api/authn/login\";",
+					"console.log(url);",
+					"// Example with a full fledged SDK Request",
+					"const echoPostRequest = {",
+					"  url: url,",
 					"  method: 'POST',",
-					"  header: 'Content-Type: application/x-www-form-urlencoded',",
-					"  body: \"user=\"+pm.environment.get('dspaceuser')+\"&password=\"+pm.environment.get('dspacepwd')",
+					"  //header: 'Content-Type:application/x-www-form-urlencoded',",
+					" /* body: {",
+					"     mode: 'raw',",
+					"     raw: JSON.stringify( { user: 'dspacedemo+submit@gmail.com', password: 'dspace'  })",
+					"  }*/",
+					"  body: {",
+					"    mode: 'formdata',",
+					"    formdata: [",
+					"         {key: 'user', value: user},",
+					"         {key: 'password', value: pwd}",
+					"    ]",
+					"  }",
 					"};",
-					"pm.sendRequest(loginRequest, function (err, response) {",
-					"    var s = response.headers.get(\"Authorization\");",
-					"    if (s == null) {",
-					"        s = \"\";",
-					"    } else {",
-					"        s = s.replace(/Bearer /,\"\");",
-					"    }",
-					"    pm.environment.set(\"auth_token\", s);",
-					"});",
-					""
+					"// 1. First login attept (fails, to obtain an up to date csrf token)",
+					"pm.sendRequest(echoPostRequest, function (err, res) {",
+					"    var csrf = res.headers.get(\"DSPACE-XSRF-TOKEN\");",
+					"    // 2. Second login attempt with a valid csrf token",
+					"    echoPostRequest.header = 'X-XSRF-TOKEN: ' + csrf",
+					"    pm.sendRequest(echoPostRequest, function (err2, res2) {",
+					"        var token = res2.headers.get(\"Authorization\");",
+					"        csrf = res2.headers.get(\"DSPACE-XSRF-TOKEN\");",
+					"        var defaultToken = pm.environment.get(\"token\");",
+					"        console.log(token);",
+					"        if (token !== undefined && token.startsWith('Bearer ')) {",
+					"            // Remove Bearer from string",
+					"            token = token.slice(7, token.length).trimLeft();",
+					"        } else {",
+					"            token = defaultToken;",
+					"        }",
+					"        pm.environment.set(\"token\", token);",
+					"        if (pm.request.method !== 'GET') {",
+					"        // add csrf header globally (so that every request will contain the X-XSRF-TOKEN)",
+					"            pm.request.headers.add( { key: 'X-XSRF-TOKEN', value: csrf });",
+					"        }",
+					"    });",
+					"});"
 				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
-				"id": "6dbc3482-5f65-499f-9039-e37fd3533238",
 				"type": "text/javascript",
 				"exec": [
 					""
