@@ -19,21 +19,28 @@ In the return section, note that authentication is false.
 
 ### 1b. Pass credentials to the login restService
 
+Make a POST call to `api/authn/login` without any credentials, in order to get a response with a generated DSPACE-XSRF-TOKEN (see the response's Header).
+For POST `api/authn/login' request, modify the Header as follows: Content-Type= application/x-www-form-urlencoded and X-XSRF-TOKEN= DSPACE-XSRF-TOKEN's value (from previous step)
+Modify the body as follows(form-urlencoded): user= yourUsername, password= yourPassword 
+After modifying the Body and the Header, make a new POST request to `api/authn/login`
+
 Note that the credentials you need to use will differ from the screenshot below.  
-
-Note that the login endpoint should be invoked with the POST method.
-
-POST `api/authn/login`
 
 ![Screenshot - post login](screenshots/post2.png)
 
 ### 1c. Copy the Bearer token and add it to the Authentication section in Postman
 
+If all authentication details are correct, you should receive a 200 status code, and in the Header of the response, you will find an 'Authorization' token.
+This token is your Bearer token, and should be provided in all future calls as Bearer Token (as authentication method).
+In all future cals, also keep in the Header section the X-XSRF-TOKEN provided previously.
+
 ![Screenshot - get authn status](screenshots/post3.png)
 
-### 1d. Re-verify your authentication status
+### 1d. Re-verify your authentication status 
 
-`api/authn/status`
+With the Bearer Token and the X-XSRF-TOKEN, you should be able to get authenticated using
+
+GET `api/authn/status`
 
 In the return section, note that authentication is true.
 
@@ -67,9 +74,10 @@ In this process, you will perform the underlying tasks that the DSpace Angular c
 
 ### 3a. Creating a Workspaceitem
 
-POST `api/submission/workspaceitems`
+Set in the Header: Content-Type= multipart/form-data, X-XSRF-TOKEN= token received at login. Also dont forget to give the Bearer Token for Authenticaation.
+The body must be set as multipart and must be empty. Make the call to
 
-This endpoint allows you to post an empty object to the request.
+POST `api/submission/workspaceitems`
 
 Note the id of the object that is created.
 
